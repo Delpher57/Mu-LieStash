@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Hurtboxes + HitBoxes/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Hurtboxes + HitBoxes/Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/GenericEnemy.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/PlayerDetectionZone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Hurtboxes + HitBoxes/softColition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/wanderControler.tscn" type="PackedScene" id=6]
+[ext_resource path="res://General/Stats.tscn" type="PackedScene" id=7]
+
+[node name="BasicEnemy" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 385
+script = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.384314 )
+position = Vector2( 0.198885, 10.2424 )
+scale = Vector2( 1.77066, 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+speed_scale = 1.5
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.174824, 8.25356 )
+rotation = 1.5708
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0.0994377, 2.68489 )
+rotation = -1.5708
+
+[node name="Stats" parent="." instance=ExtResource( 7 )]
+max_health = 5
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 4 )]
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -0.231964, 2.78358 )
+
+[node name="softColition" parent="." instance=ExtResource( 5 )]
+
+[node name="CollisionShape2D" parent="softColition" index="0"]
+position = Vector2( -0.314022, 2.84485 )
+
+[node name="wanderControler" parent="." instance=ExtResource( 6 )]
+visible = false
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+
+[editable path="Hurtbox"]
+
+[editable path="PlayerDetectionZone"]
+
+[editable path="Hitbox"]
+
+[editable path="softColition"]

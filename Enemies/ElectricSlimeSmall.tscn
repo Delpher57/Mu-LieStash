@@ -1,0 +1,134 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/ElectricSmallSlime.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/GenericEnemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 24, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 24, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 24, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 24, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 48, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 48, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 2.66676
+height = 14.3037
+
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 7.6233
+height = 8.69209
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 98.2831
+
+[sub_resource type="CircleShape2D" id=17]
+radius = 5.25517
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 7.541
+
+[node name="ElectricSlimeSmall" instance=ExtResource( 3 )]
+FRICTION = 100
+MAX_SPEED = 75
+knockback_friction = 300
+
+[node name="Sprite2" parent="." index="0"]
+texture = ExtResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+frames = SubResource( 13 )
+frame = 9
+speed_scale = 1.0
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+shape = SubResource( 14 )
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0.0334663, 4.28957 )
+shape = SubResource( 15 )
+
+[node name="Stats" parent="." index="4"]
+max_health = 2
+
+[node name="PlayerDetectionZone" parent="." index="5"]
+visible = false
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource( 16 )
+
+[node name="Hitbox" parent="." index="6"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -0.0614489, 4.31822 )
+shape = SubResource( 17 )
+
+[node name="CollisionShape2D" parent="softColition" index="0"]
+visible = false
+position = Vector2( -0.143507, 4.20897 )
+shape = SubResource( 18 )
+
+[node name="wanderControler" parent="." index="8"]
+wanderRange = 50
+
+[editable path="Hurtbox"]
+
+[editable path="PlayerDetectionZone"]
+
+[editable path="Hitbox"]
+
+[editable path="softColition"]
