@@ -1,0 +1,47 @@
+{
+  "Force": 0,
+  "Random": 0,
+  "Nodes": [
+    {
+      "id": 0,
+      "Texture": "res://DialogSystem/faces/elefantintest.png",
+      "name": "Elefantin",
+      "text": "Hola!, soy elefantin y esta es una prueba de dialogo bien culera por que no se me ocurre nada que decir :D",
+      "next_id": 1,
+      "choices": []
+    },
+    {
+      "id": 1,
+      "Texture": "",
+      "name": "Elefantin",
+      "text": "Esto deberia de estar funcionando bien [shake level=10][color=red] si no lo hace es culpa del PAC [/color] [/shake]",
+      "next_id": 2,
+      "choices": []
+    },
+    {
+      "id": 2,
+      "Texture": "",
+      "name": "Elefantin",
+      "text": "Bueno adios xd",
+      "next_id": -1,
+      "choices": [
+        {
+          "text": "...",
+          "next_id": -1
+        },
+        {
+          "text": "Adios!",
+          "next_id": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Elefantin",
+      "Texture": "",
+      "text": "Bye! :D",
+      "next_id": -1,
+      "choices": []
+    }
+  ]
+}

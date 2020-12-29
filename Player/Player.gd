@@ -23,12 +23,19 @@ var direccion_vision = Vector2.RIGHT
 var has_sword = true
 var can_dash = true
 
+#knockback al ser golpeados
+var knockback = Vector2.ZERO
+export var knockback_friction = 500
+export var knockback_speed = 150
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState =  animationTree.get("parameters/playback")
 onready var trail = $trail
 onready var sword = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
+
+export var invincibility_time = 0.5
 
 
 func _ready():
@@ -54,42 +61,49 @@ func _physics_process(delta):
 
 
 func move_state(delta):
-	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	input_vector = input_vector.normalized()
-	
-	
-	if input_vector != Vector2.ZERO:
-		trail.emitting = true
-		direccion_vision = input_vector
-		dash_vector = input_vector
-		sword.knockback_vector = input_vector
-		
-		animationTree.set("parameters/Idle/blend_position",input_vector)
-		animationTree.set("parameters/Run/blend_position",input_vector)
-		animationTree.set("parameters/Attack/blend_position",input_vector)
-		animationTree.set("parameters/Boomerang/blend_position",input_vector)
-		animationState.travel("Run")
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
-		
-		if Input.is_action_just_pressed("dash"):
-			if can_dash == true:
-				state = DASH
+	if stats.can_move != true:
+		hurtbox.set_deferred("monitoring",false)
 	else:
-		trail.emitting = false
-		animationState.travel("Idle")
-		velocity = velocity.move_toward(Vector2.ZERO,FRICTION * delta)
-	
-	move()
-	
-	if Input.is_action_just_pressed("attack"):
-		if has_sword == true:
-			state = ATTACK
-	
-	if Input.is_action_just_pressed("boomerang"):
-		if has_sword == true:
-			state = BOOMERANG
+		hurtbox.monitoring = true
+		knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
+		knockback = move_and_slide(knockback)
+		
+		var input_vector = Vector2.ZERO
+		input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		input_vector = input_vector.normalized()
+		
+		
+		if input_vector != Vector2.ZERO:
+			trail.emitting = true
+			direccion_vision = input_vector
+			dash_vector = input_vector
+			sword.knockback_vector = input_vector
+			
+			animationTree.set("parameters/Idle/blend_position",input_vector)
+			animationTree.set("parameters/Run/blend_position",input_vector)
+			animationTree.set("parameters/Attack/blend_position",input_vector)
+			animationTree.set("parameters/Boomerang/blend_position",input_vector)
+			animationState.travel("Run")
+			velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+			
+			if Input.is_action_just_pressed("dash"):
+				if can_dash == true:
+					state = DASH
+		else:
+			trail.emitting = false
+			animationState.travel("Idle")
+			velocity = velocity.move_toward(Vector2.ZERO,FRICTION * delta)
+		
+		move()
+		
+		if Input.is_action_just_pressed("attack"):
+			if has_sword == true:
+				state = ATTACK
+		
+		if Input.is_action_just_pressed("boomerang"):
+			if has_sword == true:
+				state = BOOMERANG
 
 func atack_state(_delta):
 	velocity = Vector2.ZERO
@@ -128,6 +142,7 @@ func move():
 
 func attack_anim_finished():
 	state = MOVE
+	animationState.travel("Idle")
 
 func boomerang_anim_finished():
 	#has_sword = false
@@ -144,7 +159,8 @@ func _on_particle_timer_timeout():
 	$dash_particles/trail2.emitting = false
 
 
-func _on_Hurtbox_area_entered(_area):
+func _on_Hurtbox_area_entered(area):
 	stats.health -= 1
-	hurtbox.start_invincibility(0.5)
+	hurtbox.start_invincibility(invincibility_time)
 	hurtbox.create_hit_effect()
+	knockback = area.knockback_vectorH * knockback_speed

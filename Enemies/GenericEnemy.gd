@@ -24,6 +24,7 @@ onready var sprite = $Sprite
 onready var hurtbox = $Hurtbox
 onready var softcolition = $softColition
 onready var wandercontroler = $wanderControler
+onready var hitbox = $Hitbox
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -66,6 +67,7 @@ func _physics_process(delta):
 
 func accelerate_towards_point(pos,delta):
 	var direction =global_position.direction_to(pos)
+	hitbox.knockback_vectorH = direction
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x < 0
 	
