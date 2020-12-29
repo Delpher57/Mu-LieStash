@@ -22,6 +22,7 @@ var direccion_vision = Vector2.RIGHT
 
 var has_sword = true
 var can_dash = true
+var is_talking = false
 
 #knockback al ser golpeados
 var knockback = Vector2.ZERO
@@ -61,10 +62,10 @@ func _physics_process(delta):
 
 
 func move_state(delta):
+	is_talking = false
 	if stats.can_move != true:
-		hurtbox.set_deferred("monitoring",false)
+		is_talking = true
 	else:
-		hurtbox.monitoring = true
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 		knockback = move_and_slide(knockback)
 		
@@ -160,7 +161,8 @@ func _on_particle_timer_timeout():
 
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= 1
-	hurtbox.start_invincibility(invincibility_time)
-	hurtbox.create_hit_effect()
-	knockback = area.knockback_vectorH * knockback_speed
+	if is_talking != true:
+		hurtbox.start_invincibility(invincibility_time)
+		hurtbox.create_hit_effect()
+		stats.health -= 1
+		knockback = area.knockback_vectorH * knockback_speed
