@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tests/testnpc.gd" type="Script" id=2]
+
+[node name="Generic_NPC" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+dialogo = "elefantin1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.485306, 0.485306 )
+scale = Vector2( 0.408538, 0.368097 )
+
+[node name="DialogueHitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueHitBox"]
+[connection signal="area_entered" from="DialogueHitBox" to="." method="_on_DialogueHitBox_area_entered"]

@@ -14,7 +14,7 @@
       "id": 1,
       "Texture": "",
       "name": "Elefantin",
-      "text": "Esto deberia de estar funcionando bien [shake level=10][color=red] si no lo hace es culpa del PAC [/color] [/shake]",
+      "text": "Esto deberia de estar funcionando bien [shake level=10] [color=red] si no lo hace es culpa del PAC [/color] [/shake]",
       "next_id": 2,
       "choices": []
     },

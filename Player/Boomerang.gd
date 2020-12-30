@@ -37,6 +37,7 @@ func stick(delta:float)->void:
 	var dist = global_position.distance_to(target)
 	if dist < throw_speed * delta:
 		parent.has_sword = true
+		Effects.reproducirEfect("BoomerangCatch",2)
 		queue_free()
 	else:
 		pos = pos.linear_interpolate(target, (throw_speed * delta)/dist)

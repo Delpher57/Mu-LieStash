@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://DialogSystem/Scripts/DIalogueManager.gd" type="Script" id=1]
 [ext_resource path="res://DialogSystem/DIalogueUI.tres" type="Theme" id=2]
 [ext_resource path="res://DialogSystem/Fonts/m6x11.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://DialogSystem/DIalogueUIroot.gd" type="Script" id=4]
+[ext_resource path="res://Music and Sounds/Effects/talk.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -102,3 +103,9 @@ margin_top = 5.0
 margin_right = 89.0
 margin_bottom = 25.0
 text = "Continue"
+
+[node name="talksound" type="AudioStreamPlayer" parent="DialogueUI"]
+stream = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="DialogueUI"]
+[connection signal="timeout" from="DialogueUI/Timer" to="DialogueUI" method="_on_Timer_timeout"]

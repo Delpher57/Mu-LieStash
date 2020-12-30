@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Evade.wav-cd612618661f05b5e39dccebc8901a0b.sample"
+path="res://.import/Hurt.wav-7b734cb800525180f5653a25def05321.sample"
 
 [deps]
 
-source_file="res://Music and Sounds/Evade.wav"
-dest_files=[ "res://.import/Evade.wav-cd612618661f05b5e39dccebc8901a0b.sample" ]
+source_file="res://Music and Sounds/Effects/Hurt.wav"
+dest_files=[ "res://.import/Hurt.wav-7b734cb800525180f5653a25def05321.sample" ]
 
 [params]
 

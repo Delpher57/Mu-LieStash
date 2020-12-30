@@ -87,7 +87,7 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 13 )
-frame = 9
+frame = 1
 speed_scale = 1.0
 
 [node name="CollisionShape2D" parent="." index="2"]
@@ -124,6 +124,10 @@ shape = SubResource( 18 )
 
 [node name="wanderControler" parent="." index="8"]
 wanderRange = 50
+
+[node name="VisibilityEnabler2D" parent="." index="9"]
+position = Vector2( 0.0968506, 2.71196 )
+scale = Vector2( 1.70705, 1.54239 )
 
 [editable path="Hurtbox"]
 

@@ -29,6 +29,8 @@ var frame
 
 var nodes # containes all the nodes of the current dialogue
 
+var sound_on = false
+signal finprint
 
 #----DATA (from file)-----#
 var curent_node_id = -1 # handles the current node we are traversing Note: -1 exits the dialogue
@@ -46,9 +48,11 @@ onready var dialoguePanel = self #Less rewritting if you want to move the script
 onready var dialogueName = $DialogueName
 onready var dialogueButtons = [$Control/DialogueButton,$Control/DialogueButton2,$Control/DialogueButton3,$Control/DialogueButton4]
 onready var sprite = $Sprite
-
+onready var talkSound = $talksound
+onready var timer = $Timer
 
 func iniciar_dialogo(archivo):
+# warning-ignore:return_value_discarded
 	rand_seed(OS.get_unix_time())
 	dialogueButtons[0].grab_focus()
 	LoadFile(archivo)
@@ -130,7 +134,8 @@ func UpdateUI():
 				x.disconnect("pressed",self,"_on_Button_Pressed")
 			
 		dialogueName.text = curent_node_name
-		dialogueText.bbcode_text = curent_node_text
+		prueba(curent_node_text)
+		yield(self, "finprint")
 		#sprite.frame = frame
 		if curent_node_choices.size() > 0:
 			dialogueButtons[0].grab_focus()
@@ -156,3 +161,45 @@ func UpdateUI():
 #-----On Button Pressed-----#
 func _on_Button_Pressed(id):
 	NextNode(id)
+
+
+func prueba(text):
+	var buscando = false
+	dialogueText.bbcode_text = ""
+	var tempbb = ""
+	for c in(text):
+		if buscando == true:
+			if c == ']':
+				tempbb += c
+				dialogueText.bbcode_text += tempbb
+				buscando = false
+				continue
+			else:
+				tempbb += c
+				continue
+		if c == '[':
+			buscando = true
+			tempbb = ""
+			tempbb += c
+			continue
+		
+		if sound_on == false:
+			talkSound.play()
+			sound_on = true
+			timer.start(0.1)
+		dialogueText.bbcode_text += c
+		yield(get_tree().create_timer(.02), "timeout")
+	yield(get_tree().create_timer(0.11), "timeout")
+	talkSound.stop()
+	emit_signal("finprint")
+		
+
+func play_talk():
+	if sound_on == false:
+		sound_on = true
+		talkSound.play()
+		
+
+
+func _on_Timer_timeout():
+	sound_on = false

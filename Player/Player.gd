@@ -35,6 +35,8 @@ onready var animationState =  animationTree.get("parameters/playback")
 onready var trail = $trail
 onready var sword = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
+onready var remotetransform = $RemoteTransform2D
+onready var blinkanim = $BlinkAnimation
 
 export var invincibility_time = 0.5
 
@@ -77,6 +79,7 @@ func move_state(delta):
 		
 		if input_vector != Vector2.ZERO:
 			trail.emitting = true
+			Effects.reproducirEfect("Walking",1)
 			direccion_vision = input_vector
 			dash_vector = input_vector
 			sword.knockback_vector = input_vector
@@ -90,6 +93,7 @@ func move_state(delta):
 			
 			if Input.is_action_just_pressed("dash"):
 				if can_dash == true:
+					Effects.reproducirEfect("Evade",2)
 					state = DASH
 		else:
 			trail.emitting = false
@@ -100,10 +104,12 @@ func move_state(delta):
 		
 		if Input.is_action_just_pressed("attack"):
 			if has_sword == true:
+				Effects.reproducirEfect("SwordSlash",4)
 				state = ATTACK
 		
 		if Input.is_action_just_pressed("boomerang"):
 			if has_sword == true:
+				Effects.reproducirEfect("BoomerangTrow",3)
 				state = BOOMERANG
 
 func atack_state(_delta):
@@ -126,8 +132,9 @@ func boomerang_state(_delta):
 	pass
 
 func dash_state(_delta):
-	hurtbox.start_invincibility(.5)
 	can_dash = false
+	hurtbox.start_invincibility(.5)
+	
 	$Timer.start()
 	$particle_timer.start()
 	$dash_particles/sparks.emitting = true
@@ -162,7 +169,18 @@ func _on_particle_timer_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	if is_talking != true:
+		Effects.reproducirEfect("Hurt",4)
+		
 		hurtbox.start_invincibility(invincibility_time)
 		hurtbox.create_hit_effect()
-		stats.health -= 1
+		stats.health -= area.damage
 		knockback = area.knockback_vectorH * knockback_speed
+
+#con estas dos manejamos el blink
+func _on_Hurtbox_invinsibility_started():
+	if can_dash == true:
+		blinkanim.play("Start")
+
+
+func _on_Hurtbox_invinsibility_ended():
+	blinkanim.play("Stop")

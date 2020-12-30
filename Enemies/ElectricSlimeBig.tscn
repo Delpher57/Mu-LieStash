@@ -260,7 +260,7 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 57 )
-frame = 20
+frame = 4
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -288,6 +288,10 @@ shape = SubResource( 61 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
 shape = SubResource( 62 )
+
+[node name="VisibilityEnabler2D" parent="." index="9"]
+position = Vector2( 0.64636, 1.69048 )
+scale = Vector2( 2.32753, 1.81541 )
 
 [editable path="Hurtbox"]
 

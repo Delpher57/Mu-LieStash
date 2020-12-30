@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/EnemyDie.wav-a486c87c5ffce10facfdaf6e118ee22d.sample"
+path="res://.import/Walking.wav-4131c7bd9893d3a7266025eb943bf569.sample"
 
 [deps]
 
-source_file="res://Music and Sounds/EnemyDie.wav"
-dest_files=[ "res://.import/EnemyDie.wav-a486c87c5ffce10facfdaf6e118ee22d.sample" ]
+source_file="res://Music and Sounds/Effects/Walking.wav"
+dest_files=[ "res://.import/Walking.wav-4131c7bd9893d3a7266025eb943bf569.sample" ]
 
 [params]
 

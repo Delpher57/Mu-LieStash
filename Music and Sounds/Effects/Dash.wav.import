@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Hit.wav-0fa8d06aa64f0c3d5cf8be50a2076760.sample"
+path="res://.import/Dash.wav-c8e1f9942aba80af0f2a326fe48526fd.sample"
 
 [deps]
 
-source_file="res://Music and Sounds/Hit.wav"
-dest_files=[ "res://.import/Hit.wav-0fa8d06aa64f0c3d5cf8be50a2076760.sample" ]
+source_file="res://Music and Sounds/Effects/Dash.wav"
+dest_files=[ "res://.import/Dash.wav-c8e1f9942aba80af0f2a326fe48526fd.sample" ]
 
 [params]
 

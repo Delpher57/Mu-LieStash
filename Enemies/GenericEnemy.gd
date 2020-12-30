@@ -25,6 +25,7 @@ onready var hurtbox = $Hurtbox
 onready var softcolition = $softColition
 onready var wandercontroler = $wanderControler
 onready var hitbox = $Hitbox
+onready var hurtanim = $HurtAnim
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -89,12 +90,16 @@ func pick_random_state(state_list):
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
+	Effects.reproducirEfect("Hit",4)
+	hurtanim.play("Hurt")
 	print (stats.health)
 	knockback = area.knockback_vector * knockback_speed
-	hurtbox.start_invincibility(0.5)
+	hurtbox.start_invincibility(0.45)
 	hurtbox.create_hit_effect()
 
 
 func _on_Stats_no_health():
+	Effects.reproducirEfect("EnemyDie",0)
+	hurtanim.play("Die")
 	create_death_effect()
 	queue_free()
