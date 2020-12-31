@@ -10,6 +10,7 @@ script = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Effects2" type="AudioStreamPlayer" parent="."]
+volume_db = 8.078
 script = ExtResource( 1 )
 
 [node name="Effects3" type="AudioStreamPlayer" parent="."]
@@ -20,8 +21,17 @@ script = ExtResource( 1 )
 
 [node name="Effects5" type="AudioStreamPlayer" parent="."]
 script = ExtResource( 1 )
+
+[node name="Effects6" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 1 )
+
+[node name="Effects7" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
+script = ExtResource( 1 )
 [connection signal="finished" from="Effects" to="Effects" method="_on_Effects_finished"]
 [connection signal="finished" from="Effects2" to="Effects2" method="_on_Effects2_finished"]
 [connection signal="finished" from="Effects3" to="Effects3" method="_on_Effects3_finished"]
 [connection signal="finished" from="Effects4" to="Effects4" method="_on_Effects4_finished"]
 [connection signal="finished" from="Effects5" to="Effects5" method="_on_Effects5_finished"]
+[connection signal="finished" from="Effects6" to="Effects6" method="_on_Effects5_finished"]
+[connection signal="finished" from="Effects7" to="Effects7" method="_on_Effects5_finished"]

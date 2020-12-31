@@ -9,6 +9,8 @@ var pos: = Vector2.ZERO
 var direccion = Vector2.ZERO
 var spin_speed: float = 4*360
 
+onready var animationPlayer = $AnimationPlayer
+
 func _ready()->void:
 	idle_position()
 
@@ -26,6 +28,7 @@ func idle()->void:
 	pass
 
 func fly(delta:float)->void:
+	
 	pos += velocity*delta #variable for disconnecting from parent movement
 	global_position = pos
 	$Hitbox.knockback_vector = velocity.normalized()
@@ -37,7 +40,7 @@ func stick(delta:float)->void:
 	var dist = global_position.distance_to(target)
 	if dist < throw_speed * delta:
 		parent.has_sword = true
-		Effects.reproducirEfect("BoomerangCatch",2)
+		Effects.reproducirEfect("BoomerangCatch",5)
 		queue_free()
 	else:
 		pos = pos.linear_interpolate(target, (throw_speed * delta)/dist)
@@ -47,6 +50,7 @@ func stick(delta:float)->void:
 
 
 func throw()->void:
+	animationPlayer.play("throw")
 	state = FLY
 	$Timer.start()
 	$Timer2.start()

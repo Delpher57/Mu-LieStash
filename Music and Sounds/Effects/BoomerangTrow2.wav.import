@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BoomerangTrow2.wav-d000c812246341a69935b11d68a8140b.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Effects/BoomerangTrow2.wav"
+dest_files=[ "res://.import/BoomerangTrow2.wav-d000c812246341a69935b11d68a8140b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

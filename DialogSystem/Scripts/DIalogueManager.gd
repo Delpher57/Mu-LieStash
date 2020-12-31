@@ -166,6 +166,7 @@ func _on_Button_Pressed(id):
 func prueba(text):
 	var buscando = false
 	dialogueText.bbcode_text = ""
+	var timertime = .02
 	var tempbb = ""
 	for c in(text):
 		if buscando == true:
@@ -186,20 +187,22 @@ func prueba(text):
 		if sound_on == false:
 			talkSound.play()
 			sound_on = true
-			timer.start(0.1)
+			timer.start(timertime*5)
+		if Input.is_action_pressed("dash"):
+			timertime = 0
+			
 		dialogueText.bbcode_text += c
-		yield(get_tree().create_timer(.02), "timeout")
-	yield(get_tree().create_timer(0.11), "timeout")
+		if timertime == 0:
+			continue
+		yield(get_tree().create_timer(timertime), "timeout")
+	yield(get_tree().create_timer(timertime*5), "timeout")
 	talkSound.stop()
 	emit_signal("finprint")
 		
 
-func play_talk():
-	if sound_on == false:
-		sound_on = true
-		talkSound.play()
-		
+
 
 
 func _on_Timer_timeout():
+	pass
 	sound_on = false

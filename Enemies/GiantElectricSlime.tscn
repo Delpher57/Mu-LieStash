@@ -41,23 +41,25 @@ radius = 84.0821
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 13.4988
+height = 16.1018
 
 [sub_resource type="CapsuleShape2D" id=10]
-radius = 22.0303
+radius = 18.4521
+height = 18.9396
 
 [node name="GiantElectricSlime" instance=ExtResource( 1 )]
 FRICTION = 100
 MAX_SPEED = 40
 wanderDistance = 6
-knockback_speed = 100
+knockback_friction = 450
+knockback_speed = 75
 
-[node name="Sprite2" parent="." index="0"]
-position = Vector2( 0.198885, 25.5221 )
+[node name="sombra" parent="." index="0"]
+position = Vector2( 0.628176, 24.6232 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 5 )
-frame = 2
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( -1.15384, 22.7028 )
@@ -71,14 +73,16 @@ position = Vector2( -0.730991, 10.9891 )
 shape = SubResource( 7 )
 
 [node name="Stats" parent="." index="4"]
-max_health = 8
+max_health = 16
+
+[node name="PlayerDetectionZone" parent="." index="5"]
+visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 position = Vector2( -7.62939e-06, 13.7849 )
 shape = SubResource( 8 )
 
 [node name="Hitbox" parent="." index="6"]
-visible = false
 damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
@@ -90,7 +94,7 @@ shape = SubResource( 9 )
 visible = false
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
-position = Vector2( -1.14444, 12.3116 )
+position = Vector2( 0.787307, 12.1368 )
 rotation = -1.5708
 shape = SubResource( 10 )
 
@@ -98,6 +102,7 @@ shape = SubResource( 10 )
 wanderRange = 20
 
 [node name="VisibilityEnabler2D" parent="." index="9"]
+visible = false
 position = Vector2( 0.0830387, 10.4632 )
 scale = Vector2( 4.06424, 2.7937 )
 

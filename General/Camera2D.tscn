@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://General/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://World/fondo.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hurtFlash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 100, 0, 0, 0.31 ), Color( 100, 0, 0, 0 ) ]
+}
 
 [node name="Camera2D" type="Camera2D"]
 position = Vector2( 68.8639, 103.113 )
@@ -8,6 +25,7 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 3.0
 script = ExtResource( 1 )
+shake_amount = 4
 
 [node name="Node" type="Node" parent="."]
 
@@ -16,3 +34,14 @@ position = Vector2( -95.6439, 8.10542 )
 
 [node name="downright" type="Position2D" parent="Node"]
 position = Vector2( 233.976, 199.934 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 100, 0, 0, 0 )
+position = Vector2( 3.73284, 0.27018 )
+scale = Vector2( 1.93304, 1.27393 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 784.504, 270.008 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hurtFlash = SubResource( 1 )

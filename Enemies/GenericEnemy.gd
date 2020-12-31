@@ -25,7 +25,12 @@ onready var hurtbox = $Hurtbox
 onready var softcolition = $softColition
 onready var wandercontroler = $wanderControler
 onready var hitbox = $Hitbox
+
 onready var hurtanim = $HurtAnim
+onready var exclamationAnim = $ExclamationAnim
+onready var audio = $AudioStreamPlayer
+
+var exclamation_played = false
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -57,9 +62,13 @@ func _physics_process(delta):
 		CHASE:
 			var player = playerdetectionzone.player
 			if player != null:
+				if exclamation_played == false:
+					exclamationAnim.play("exclamation")
+					exclamation_played = true
 				accelerate_towards_point(player.global_position,delta)
 			else:
 				state = IDLE
+				exclamation_played = false
 
 	
 	if softcolition.is_colliding():
@@ -90,10 +99,11 @@ func pick_random_state(state_list):
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
-	Effects.reproducirEfect("Hit",4)
+	audio.play()
 	hurtanim.play("Hurt")
+	exclamationAnim.play("hideExclamation")
 	print (stats.health)
-	knockback = area.knockback_vector * knockback_speed
+	knockback = area.knockback_vector * knockback_speed * area.knockback_multiplier
 	hurtbox.start_invincibility(0.45)
 	hurtbox.create_hit_effect()
 

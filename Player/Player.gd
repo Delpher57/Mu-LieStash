@@ -17,6 +17,7 @@ var velocity = Vector2.ZERO
 var dash_vector = Vector2.RIGHT
 var stats = PlayerStats
 
+
 #le mandamos esto al boomerang para saber la dirección
 var direccion_vision = Vector2.RIGHT
 
@@ -66,6 +67,8 @@ func _physics_process(delta):
 func move_state(delta):
 	is_talking = false
 	if stats.can_move != true:
+		trail.emitting = false
+		animationState.travel("Idle")
 		is_talking = true
 	else:
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -127,8 +130,9 @@ func boomerang_state(_delta):
 		boomerang.set_dir_hitbox()
 		boomerang.throw()
 		
-		velocity = Vector2.ZERO
+		
 		animationState.travel("Boomerang")
+		
 	pass
 
 func dash_state(_delta):
@@ -142,7 +146,6 @@ func dash_state(_delta):
 	
 	animationState.travel("Run")
 	velocity = dash_vector * DASH_SPEED
-	move()
 	state = MOVE
 
 func move():
@@ -169,7 +172,7 @@ func _on_particle_timer_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	if is_talking != true:
-		Effects.reproducirEfect("Hurt",4)
+		Effects.reproducirEfect("Hurt",6)
 		
 		hurtbox.start_invincibility(invincibility_time)
 		hurtbox.create_hit_effect()
