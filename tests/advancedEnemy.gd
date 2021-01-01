@@ -4,7 +4,8 @@ const DeathEffect = preload("res://Effects/EnemyDeath.tscn")
 enum {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	ATTACK
 }
 var state = WANDER
 
@@ -20,24 +21,35 @@ export var knockback_speed = 150
 
 onready var stats = $Stats
 onready var playerdetectionzone = $PlayerDetectionZone
-onready var sprite = $Sprite
+onready var sprite = $"Minotaur - Sprite Sheet"
 onready var hurtbox = $Hurtbox
 onready var softcolition = $softColition
 onready var wandercontroler = $wanderControler
 onready var hitbox = $Hitbox
 
-onready var hurtanim = $HurtAnim
-onready var exclamationAnim = $ExclamationAnim
-onready var audio = $AudioStreamPlayer
+onready var animationTree = $AnimationTree
+onready var animationState =  animationTree.get("parameters/playback")
+
+export var atacks = ["Warrior", "Magician", "Thief"]
+
+var can_atack = true
+
+#onready var audio = $AudioStreamPlayer
 
 var exclamation_played = false
+
+func _ready():
+	animationTree.active = true
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 	knockback = move_and_slide(knockback)
 	
 	match state:
+		ATTACK:
+			pass
 		IDLE:
+			animationState.travel("IDLE")
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
 			if wandercontroler.get_time_left() == 0:
@@ -60,26 +72,30 @@ func _physics_process(delta):
 		
 		
 		CHASE:
+			animationState.travel("RUN")
+			
 			var player = playerdetectionzone.player
 			if player != null:
-				if exclamation_played == false:
-					exclamationAnim.play("exclamation")
-					exclamation_played = true
+				if global_position.distance_to(player.global_position) < 50:
+					atack()
 				accelerate_towards_point(player.global_position,delta)
 			else:
 				state = IDLE
 				exclamation_played = false
 
 	
-	if softcolition.is_colliding():
+	if softcolition.is_colliding() and state != ATTACK:
 		velocity += softcolition.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
 
 func accelerate_towards_point(pos,delta):
+	animationTree.set("parameters/ATTACK1/blend_position",global_position.direction_to(pos).normalized())
+	animationTree.set("parameters/ATTACK2/blend_position",global_position.direction_to(pos).normalized())
+	animationTree.set("parameters/IDLE/blend_position",global_position.direction_to(pos).normalized())
+	animationTree.set("parameters/RUN/blend_position",global_position.direction_to(pos).normalized())
 	var direction =global_position.direction_to(pos)
 	hitbox.knockback_vectorH = direction
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
-	sprite.flip_h = velocity.x < 0
 	
 
 func seek_player():
@@ -98,17 +114,37 @@ func pick_random_state(state_list):
 	
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= area.damage
-	audio.play()
-	hurtanim.play("Hurt")
-	exclamationAnim.play("hideExclamation")
-	knockback = area.knockback_vector * knockback_speed * area.knockback_multiplier
-	hurtbox.start_invincibility(0.45)
-	hurtbox.create_hit_effect()
+	if state != ATTACK:
+		$hit_anim.play("hit")
+		$AudioStreamPlayer.play()
+		stats.health -= area.damage
+		print (stats.health)
+		knockback = area.knockback_vector * knockback_speed * area.knockback_multiplier
+		hurtbox.start_invincibility(0.45)
+		hurtbox.create_hit_effect()
 
 
 func _on_Stats_no_health():
 	Effects.reproducirEfect("EnemyDie",0)
-	hurtanim.play("Die")
 	create_death_effect()
 	queue_free()
+
+func atack():
+	if can_atack == true:
+		can_atack = false
+		$Timer.start(3)
+		state = ATTACK
+		velocity = Vector2.ZERO
+		var next_atack = atacks[rand_range(0,atacks.size())]
+		animationState.travel(next_atack)
+	
+
+func attack_finished():
+	state = CHASE
+
+
+func _on_Timer_timeout():
+	can_atack = true
+
+func play_atack():
+	$hit_sound.play()

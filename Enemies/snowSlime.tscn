@@ -116,7 +116,7 @@ texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 57 )
-frame = 10
+frame = 14
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -133,6 +133,9 @@ shape = SubResource( 59 )
 [node name="Stats" parent="." index="4"]
 max_health = 8
 
+[node name="PlayerDetectionZone" parent="." index="5"]
+visible = false
+
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 shape = SubResource( 60 )
 
@@ -146,6 +149,7 @@ shape = SubResource( 61 )
 shape = SubResource( 62 )
 
 [node name="VisibilityEnabler2D" parent="." index="9"]
+visible = false
 position = Vector2( -0.348041, 2.33685 )
 scale = Vector2( 1.51212, 1.13424 )
 

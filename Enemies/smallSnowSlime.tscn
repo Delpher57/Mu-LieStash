@@ -88,7 +88,7 @@ texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 13 )
-frame = 10
+frame = 4
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -111,9 +111,15 @@ visible = false
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 shape = SubResource( 16 )
 
+[node name="Hitbox" parent="." index="6"]
+visible = false
+
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( -0.0699729, 4.24148 )
 shape = SubResource( 17 )
+
+[node name="softColition" parent="." index="7"]
+visible = false
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
 position = Vector2( 0.171948, 3.97878 )

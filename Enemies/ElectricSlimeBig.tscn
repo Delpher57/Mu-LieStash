@@ -291,9 +291,11 @@ visible = false
 shape = SubResource( 61 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
+visible = false
 shape = SubResource( 62 )
 
 [node name="VisibilityEnabler2D" parent="." index="9"]
+visible = false
 position = Vector2( 0.64636, 1.69048 )
 scale = Vector2( 2.32753, 1.81541 )
 
