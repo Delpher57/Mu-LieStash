@@ -8,6 +8,8 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [node name="DialogueUI" type="CanvasLayer"]
@@ -58,6 +60,10 @@ margin_bottom = -106.58
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0.686275, 0.964706, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 0
 text = "Name:"
 scroll_active = false
 __meta__ = {

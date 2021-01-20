@@ -9,9 +9,10 @@ dialogo = "elefantin1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.485306, 0.485306 )
-scale = Vector2( 0.408538, 0.368097 )
+[node name="sombra" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.415686 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
 
 [node name="DialogueHitBox" type="Area2D" parent="."]
 collision_layer = 16
