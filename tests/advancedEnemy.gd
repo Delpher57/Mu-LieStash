@@ -1,4 +1,5 @@
 extends KinematicBody2D
+var statestr = ""
 
 const DeathEffect = preload("res://Effects/EnemyDeath.tscn")
 enum {
@@ -26,11 +27,14 @@ onready var hurtbox = $Hurtbox
 onready var softcolition = $softColition
 onready var wandercontroler = $wanderControler
 onready var hitbox = $Hitbox
+onready var camera = get_tree().get_nodes_in_group("Camera")[0]
 
 onready var animationTree = $AnimationTree
 onready var animationState =  animationTree.get("parameters/playback")
 
+
 export var atacks = ["Warrior", "Magician", "Thief"]
+export var shakeamount = .2
 
 var can_atack = true
 
@@ -44,11 +48,14 @@ func _ready():
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 	knockback = move_and_slide(knockback)
-	
+	$"Minotaur - Sprite Sheet/Label".text = statestr
 	match state:
+		
 		ATTACK:
+			statestr = "ATACK"
 			pass
 		IDLE:
+			statestr = "IDLE"
 			animationState.travel("IDLE")
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
@@ -57,28 +64,31 @@ func _physics_process(delta):
 				wandercontroler.start_wander_timer(rand_range(1,3))
 		
 		WANDER:
+			statestr = "WANDER"
 			seek_player()
 			if wandercontroler.get_time_left() == 0:
 				state = pick_random_state([IDLE,WANDER])
 				wandercontroler.start_wander_timer(rand_range(1,3))
 			accelerate_towards_point(wandercontroler.target_position,delta)
 
-			
 			if global_position.distance_to(wandercontroler.target_position) <= wanderDistance:
 				state = pick_random_state([IDLE,WANDER])
 				wandercontroler.start_wander_timer(rand_range(1,3))
+			
+			animationState.travel("RUN")
 			
 			
 		
 		
 		CHASE:
+			statestr = "CHASE"
 			animationState.travel("RUN")
-			
 			var player = playerdetectionzone.player
 			if player != null:
 				if global_position.distance_to(player.global_position) < 50:
 					atack()
 				accelerate_towards_point(player.global_position,delta)
+				
 			else:
 				state = IDLE
 				exclamation_played = false
@@ -115,6 +125,7 @@ func pick_random_state(state_list):
 
 func _on_Hurtbox_area_entered(area):
 	if state != ATTACK:
+		camera.trauma = shakeamount
 		$hit_anim.play("hit")
 		$AudioStreamPlayer.play()
 		stats.health -= area.damage
@@ -126,13 +137,15 @@ func _on_Hurtbox_area_entered(area):
 
 func _on_Stats_no_health():
 	Effects.reproducirEfect("EnemyDie",0)
+	camera.trauma = shakeamount*1.5
 	create_death_effect()
 	queue_free()
 
 func atack():
+	#animationState.travel("IDLE")
 	if can_atack == true:
 		can_atack = false
-		$Timer.start(3)
+		$Timer.start(2.5)
 		state = ATTACK
 		velocity = Vector2.ZERO
 		var next_atack = atacks[rand_range(0,atacks.size())]

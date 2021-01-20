@@ -1,11 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://General/Camera2D.gd" type="Script" id=1]
-[ext_resource path="res://World/fondo.png" type="Texture" id=2]
+[ext_resource path="res://Effects/RedDamage.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hurtFlash"
 length = 0.2
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
@@ -14,12 +15,14 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( 1, 0.307786 ),
 "update": 0,
-"values": [ Color( 100, 0, 0, 0.31 ), Color( 100, 0, 0, 0 ) ]
+"values": [ Color( 1, 0, 0.376471, 0.733333 ), Color( 100, 0, 0, 0 ) ]
 }
 
-[node name="Camera2D" type="Camera2D"]
+[node name="Camera2D" type="Camera2D" groups=[
+"Camera",
+]]
 position = Vector2( 68.8639, 103.113 )
 current = true
 smoothing_enabled = true

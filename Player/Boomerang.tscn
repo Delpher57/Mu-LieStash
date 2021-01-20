@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://Player/boomerang_borde.png" type="Texture" id=1]
+[ext_resource path="res://Player/BOOMERAND_PICO8.png" type="Texture" id=1]
 [ext_resource path="res://Player/Boomerang.gd" type="Script" id=2]
 [ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=3]
 [ext_resource path="res://Effects/trail.gd" type="Script" id=4]
@@ -23,8 +23,8 @@ max_value = 5.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.994505, 1.08523 ), 1.4, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0.00662252, 0.370861, 0.523179, 0.741722, 1 )
-colors = PoolColorArray( 1, 0.870117, 0, 0, 0, 1, 0.980392, 0.180392, 0.313726, 0, 1, 0.305882, 1, 0, 0.607843, 0.611765, 0.989258, 1, 0, 1 )
+offsets = PoolRealArray( 0.00662252, 0.154362, 0.167785, 0.348993, 0.38255, 0.536913, 0.563758, 0.812081, 0.825503, 1 )
+colors = PoolColorArray( 1, 0.870117, 0, 0, 0.170592, 0.977843, 0.813145, 0.149619, 0.0935103, 0.971487, 0.906852, 0.206001, 0.0588235, 0.968627, 0.94902, 0.231373, 0.0365569, 0.398218, 0.994452, 0.492532, 0.0509804, 0.160784, 1, 0.615686, 0.903434, 0.0294118, 0.915965, 0.58343, 1, 0.0392157, 0.945098, 1, 0.992157, 0.819608, 0.109804, 0.741176, 0.989258, 1, 0, 1 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -174,7 +174,7 @@ texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
-frame = 5
+frame = 10
 speed_scale = 5.0
 playing = true
 

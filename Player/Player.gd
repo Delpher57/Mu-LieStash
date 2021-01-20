@@ -36,7 +36,6 @@ onready var animationState =  animationTree.get("parameters/playback")
 onready var trail = $trail
 onready var sword = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
-onready var remotetransform = $RemoteTransform2D
 onready var blinkanim = $BlinkAnimation
 
 export var invincibility_time = 0.5

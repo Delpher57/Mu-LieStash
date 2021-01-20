@@ -65,7 +65,7 @@ func _physics_process(delta):
 			var enemy = enemyDetector.enemy
 			if enemy != null:
 				accelerate_towards_point(enemy.global_position,delta)
-				if global_position.distance_to(enemy.global_position) < 30:
+				if global_position.distance_to(enemy.global_position) < 40:
 					animationState.travel("ATTACK")
 			else:
 				state = FOLLOW

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://tests/testnpc.gd" type="Script" id=2]
 
-[node name="Generic_NPC" type="KinematicBody2D"]
+[node name="Generic_NPC" type="StaticBody2D"]
 collision_layer = 0
 script = ExtResource( 2 )
 dialogo = "elefantin1"

@@ -25,12 +25,14 @@ onready var hurtbox = $Hurtbox
 onready var softcolition = $softColition
 onready var wandercontroler = $wanderControler
 onready var hitbox = $Hitbox
+onready var camera = get_tree().get_nodes_in_group("Camera")[0]
 
 onready var hurtanim = $HurtAnim
 onready var exclamationAnim = $ExclamationAnim
 onready var audio = $AudioStreamPlayer
 
 var exclamation_played = false
+export var shakeamount = .2
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -96,8 +98,8 @@ func pick_random_state(state_list):
 	state_list.shuffle()
 	return state_list.pop_front()
 	
-
 func _on_Hurtbox_area_entered(area):
+	camera.trauma = shakeamount
 	stats.health -= area.damage
 	audio.play()
 	hurtanim.play("Hurt")
@@ -109,6 +111,13 @@ func _on_Hurtbox_area_entered(area):
 
 func _on_Stats_no_health():
 	Effects.reproducirEfect("EnemyDie",0)
-	hurtanim.play("Die")
+	camera.trauma = shakeamount*1.5
 	create_death_effect()
-	queue_free()
+	$DieAnim.play("Die")
+
+
+
+
+func _on_DieAnim_animation_finished(anim_name):
+	if (anim_name == "Die"):
+		queue_free()

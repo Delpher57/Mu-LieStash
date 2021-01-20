@@ -1,6 +1,6 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=57 format=2]
 
-[ext_resource path="res://Enemies/Minotaur - Sprite Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/MINOTAUR_PICO8.png" type="Texture" id=1]
 [ext_resource path="res://Shadows/LargeShadow.png" type="Texture" id=2]
 [ext_resource path="res://Hurtboxes + HitBoxes/softColition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Hurtboxes + HitBoxes/Hitbox.tscn" type="PackedScene" id=4]
@@ -12,7 +12,15 @@
 [ext_resource path="res://Music and Sounds/Effects/Hurt.wav" type="AudioStream" id=10]
 [ext_resource path="res://Music and Sounds/Effects/EnemyAttack.wav" type="AudioStream" id=11]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="DynamicFontData" id=46]
+font_path = "res://DialogSystem/Fonts/m6x11.ttf"
+
+[sub_resource type="DynamicFont" id=47]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 46 )
+
+[sub_resource type="Animation" id=1]
 resource_name = "ATACKL1"
 length = 0.7
 tracks/0/type = "value"
@@ -92,8 +100,56 @@ tracks/5/keys = {
 "method": "attack_finished"
 } ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.67031, 1.84955 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Minotaur - Sprite Sheet:hframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Minotaur - Sprite Sheet:vframes")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, -16.356, 864, 1908.4 ) ]
+}
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "ATACKL2"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Minotaur - Sprite Sheet:frame")
@@ -160,9 +216,44 @@ tracks/4/keys = {
 "method": "attack_finished"
 } ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.44753, 15.7342 ), Vector2( -2.27271, 15.4719 ), Vector2( -2.09789, 16.2586 ), Vector2( -2.09789, 15.2097 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Minotaur - Sprite Sheet:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.08281 ), Vector2( 1, 0.922709 ), Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 864, 1908.4 ) ]
+}
 
-[sub_resource type="Animation" id=1]
-resource_name = "ATACKR1"
+[sub_resource type="Animation" id=3]
 length = 0.7
 loop = true
 tracks/0/type = "value"
@@ -230,8 +321,32 @@ tracks/4/keys = {
 "method": "attack_finished"
 } ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2.83949, 3.27347 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, -21.088, 864, 1908.4 ) ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "ATACKR2"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Minotaur - Sprite Sheet:frame")
@@ -252,7 +367,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3, 0.8 ),
+"times": PoolRealArray( 0.3, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -298,9 +413,44 @@ tracks/4/keys = {
 "method": "attack_finished"
 } ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3.4965, 21.6782 ), Vector2( 3.49649, 21.7656 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Minotaur - Sprite Sheet:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.08281 ), Vector2( 1, 0.922709 ), Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 864, 1908.4 ) ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "IDLEL"
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -315,9 +465,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 90, 91, 92, 93, 94 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1.92305, 19.2307 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 864, 1908.4 ) ]
+}
 
-[sub_resource type="Animation" id=3]
-resource_name = "IDLER"
+[sub_resource type="Animation" id=6]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -332,9 +505,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3.72948, 21.9413 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, -3.34, 864, 1908.37 ) ]
+}
 
-[sub_resource type="Animation" id=4]
-resource_name = "RUNL"
+[sub_resource type="Animation" id=7]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -349,9 +545,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 99, 100, 101, 102, 103, 104, 105, 106 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -3.49647, 20.6293 ), Vector2( -3.49647, 20.6293 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 864, 1908.4 ) ]
+}
 
-[sub_resource type="Animation" id=5]
-resource_name = "RUNR"
+[sub_resource type="Animation" id=8]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -365,6 +584,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Minotaur - Sprite Sheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4.54544, 22.8427 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, -3.782, 864, 1908.4 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=9]
@@ -417,51 +660,51 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "IDLER"
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "RUNL"
-
 [sub_resource type="AnimationNodeAnimation" id=21]
 animation = "IDLER"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
 animation = "IDLEL"
 
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "IDLER"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "IDLEL"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id=23]
-blend_point_0/node = SubResource( 19 )
-blend_point_0/pos = Vector2( 0, 1.1 )
-blend_point_1/node = SubResource( 20 )
-blend_point_1/pos = Vector2( 0, -1.1 )
-blend_point_2/node = SubResource( 21 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 22 )
-blend_point_3/pos = Vector2( -1, 0 )
+blend_point_0/node = SubResource( 21 )
+blend_point_0/pos = Vector2( 1, 0 )
+blend_point_1/node = SubResource( 22 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 44 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 45 )
+blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "RUNR"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "RUNL"
+
 [sub_resource type="AnimationNodeAnimation" id=26]
 animation = "RUNR"
 
-[sub_resource type="AnimationNodeAnimation" id=42]
-animation = "RUNL"
-
-[sub_resource type="AnimationNodeAnimation" id=43]
-animation = "RUNR"
-
-[sub_resource type="AnimationNodeAnimation" id=44]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "RUNL"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=28]
-blend_point_0/node = SubResource( 26 )
+blend_point_0/node = SubResource( 24 )
 blend_point_0/pos = Vector2( 1, 0 )
-blend_point_1/node = SubResource( 42 )
+blend_point_1/node = SubResource( 25 )
 blend_point_1/pos = Vector2( -1, 0 )
-blend_point_2/node = SubResource( 43 )
+blend_point_2/node = SubResource( 26 )
 blend_point_2/pos = Vector2( 0, 1.1 )
-blend_point_3/node = SubResource( 44 )
+blend_point_3/node = SubResource( 27 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
@@ -490,32 +733,33 @@ states/RUN/node = SubResource( 28 )
 states/RUN/position = Vector2( 279, 137 )
 transitions = [ "RUN", "IDLE", SubResource( 29 ), "IDLE", "RUN", SubResource( 30 ), "ATTACK2", "IDLE", SubResource( 31 ), "IDLE", "ATTACK2", SubResource( 32 ), "IDLE", "ATTACK1", SubResource( 33 ), "ATTACK1", "IDLE", SubResource( 34 ) ]
 start_node = "IDLE"
+graph_offset = Vector2( -21, 4 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
-[sub_resource type="CircleShape2D" id=41]
-radius = 24.4914
+[sub_resource type="CircleShape2D" id=37]
+radius = 17.0032
 
-[sub_resource type="CircleShape2D" id=45]
-radius = 11.5403
+[sub_resource type="CircleShape2D" id=38]
+radius = 9.26226
 
-[sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 14.8437, 19.021 )
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 11.8323, 15.4913 )
 
-[sub_resource type="RectangleShape2D" id=38]
-extents = Vector2( 12.3524, 18.3742 )
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 11.3318, 17.3892 )
 
-[sub_resource type="CapsuleShape2D" id=39]
+[sub_resource type="CapsuleShape2D" id=41]
 radius = 5.41977
 height = 13.2839
 
-[sub_resource type="CircleShape2D" id=40]
+[sub_resource type="CircleShape2D" id=42]
 radius = 128.026
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=43]
 resource_name = "hit"
 length = 0.1
-step = 0.05
+step = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Minotaur - Sprite Sheet:modulate")
 tracks/0/interp = 1
@@ -538,7 +782,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -1.9026, 1.30804 ), Vector2( -0.356733, -0.118912 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 4.04142, 24.0352 ), Vector2( 3.48939, 24.5313 ), Vector2( 4.3706, 24.6502 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Minotaur - Sprite Sheet:scale")
@@ -552,6 +796,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 0.945498, 0.922394 ), Vector2( 0.883565, 1.01752 ), Vector2( 1, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Minotaur - Sprite Sheet:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 864, 1908.4 ) ]
+}
 
 [node name="Minotauro" type="KinematicBody2D"]
 collision_layer = 256
@@ -562,29 +818,43 @@ MAX_SPEED = 40
 knockback_friction = 200
 knockback_speed = 60
 atacks = [ "ATTACK1", "ATTACK2" ]
+shakeamount = 0.3
 
 [node name="sombra" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.392157 )
-position = Vector2( -2.65733, 11.4597 )
+position = Vector2( 1.0373, 17.6485 )
 texture = ExtResource( 2 )
 
 [node name="Minotaur - Sprite Sheet" type="Sprite" parent="."]
+position = Vector2( 3.72948, 21.9413 )
 texture = ExtResource( 1 )
 vframes = 20
 hframes = 9
-frame = 28
+frame = 1
 region_enabled = true
-region_rect = Rect2( 0, 0, 864, 1908.4 )
+region_rect = Rect2( 0, -3.34, 864, 1908.37 )
+
+[node name="Label" type="Label" parent="Minotaur - Sprite Sheet"]
+margin_left = -20.5126
+margin_top = -56.9061
+margin_right = 19.4874
+margin_bottom = -42.9061
+custom_fonts/font = SubResource( 47 )
+text = "NADA"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ATACKL1 = SubResource( 7 )
-anims/ATACKL2 = SubResource( 8 )
-anims/ATACKR1 = SubResource( 1 )
-anims/ATACKR2 = SubResource( 6 )
-anims/IDLEL = SubResource( 2 )
-anims/IDLER = SubResource( 3 )
-anims/RUNL = SubResource( 4 )
-anims/RUNR = SubResource( 5 )
+anims/ATACKL1 = SubResource( 1 )
+anims/ATACKL2 = SubResource( 2 )
+anims/ATACKR1 = SubResource( 3 )
+anims/ATACKR2 = SubResource( 4 )
+anims/IDLEL = SubResource( 5 )
+anims/IDLER = SubResource( 6 )
+anims/RUNL = SubResource( 7 )
+anims/RUNR = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 35 )
@@ -596,56 +866,58 @@ parameters/IDLE/blend_position = Vector2( 0, 0 )
 parameters/RUN/blend_position = Vector2( 0, 0 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 4 )]
-visible = false
 collision_layer = 64
 collision_mask = 12
 damage = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 12.2602, -3.4056 )
-shape = SubResource( 41 )
+position = Vector2( 15.3252, 8.51401 )
+shape = SubResource( 37 )
+disabled = true
 
 [node name="Hitbox2" parent="." instance=ExtResource( 4 )]
 visible = false
+position = Vector2( 6.89694, 1.18913 )
 collision_layer = 64
 collision_mask = 12
 
 [node name="CollisionShape2D" parent="Hitbox2" index="0"]
-position = Vector2( -3.0773, 6.18949 )
-shape = SubResource( 45 )
+position = Vector2( -7.81066, 0.825018 )
+shape = SubResource( 38 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 5 )]
-position = Vector2( -2.74645, -8.08409 )
+position = Vector2( -1.79515, -2.85192 )
 collision_layer = 16
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 2.54038, 6.7416 )
-shape = SubResource( 37 )
+shape = SubResource( 39 )
 
 [node name="softColition" parent="." instance=ExtResource( 3 )]
 visible = false
+position = Vector2( -0.66433, -5.8129 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
 position = Vector2( 1.99299, 6.47722 )
-shape = SubResource( 38 )
+shape = SubResource( 40 )
 
 [node name="Stats" parent="." instance=ExtResource( 7 )]
 max_health = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 3.48774, 20.096 )
+position = Vector2( 0.92463, 14.8274 )
 rotation = -1.5708
-shape = SubResource( 39 )
+shape = SubResource( 41 )
 
 [node name="wanderControler" parent="." instance=ExtResource( 6 )]
-wanderRange = 15
+wanderRange = 30
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 9 )]
 visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
-shape = SubResource( 40 )
+shape = SubResource( 42 )
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -657,7 +929,7 @@ stream = ExtResource( 11 )
 volume_db = 10.0
 
 [node name="hit_anim" type="AnimationPlayer" parent="."]
-anims/hit = SubResource( 46 )
+anims/hit = SubResource( 43 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -25,7 +25,7 @@ var stats = PlayerStats
 #var file_name = "dialogue_4" # You could pass a new file here on area body enter or whenever you feel like
 var file_name
 var texture
-var frame
+
 
 var nodes # containes all the nodes of the current dialogue
 
@@ -33,14 +33,13 @@ var sound_on = false
 signal finprint
 
 #----DATA (from file)-----#
-var curent_node_id = -1 # handles the current node we are traversing Note: -1 exits the dialogue
+var curent_node_id # handles the current node we are traversing Note: -1 exits the dialogue
 var curent_node_name # name of the speaker 
 var curent_node_text # dialogue text
 var curent_node_next_id # connect to the next node Note: ignored if curent_node_choices has things inside
-var curent_node_choices = [] # If you want more than one possible answear, you should fill this up
+var curent_node_choices # If you want more than one possible answear, you should fill this up
 
-var force = false # force start the dialogue
-var random = false # Start from random node
+
 
 #------UI--------#
 onready var dialogueText = $DialogueText 
@@ -53,11 +52,10 @@ onready var timer = $Timer
 
 func iniciar_dialogo(archivo):
 # warning-ignore:return_value_discarded
-	rand_seed(OS.get_unix_time())
 	dialogueButtons[0].grab_focus()
 	LoadFile(archivo)
 	StartDialogue()
-	stats.can_move = false
+	
 
 
 func LoadFile(fname):
@@ -67,33 +65,26 @@ func LoadFile(fname):
 	if file.file_exists("res://DialogSystem/Dialogues/" + file_name + extention):
 		file.open("res://DialogSystem/Dialogues/" + file_name + extention, file.READ)
 		var json_result = parse_json(file.get_as_text())
-		force = bool(json_result["Force"])
-		random = bool(json_result["Random"])
-		curent_node_id = 0
-		nodes = json_result["Nodes"]
+
+
+		curent_node_id = json_result["root"]["next"]
+		nodes = json_result
+
 
 	else:
 		print("Dialogue: File Open Error")
 	file.close()
-	if force:
-		StartDialogue()
+
 	
 #-----Traversing Graph-----#
 func StartDialogue():
 	if nodes:
-		if random:
-			var temp = []
-			for x in nodes:
-				temp.append(x["id"])
-			curent_node_id = temp[randi()%temp.size()]
-		else:
-			curent_node_id = 0
+		stats.can_move = false
 		HandleNode()
-	else:
-		print("Dialogue: Could not Find Nodes")
+
 
 func EndDialogue():
-	curent_node_id = -1
+	curent_node_id = "_NULL_"
 
 func NextNode(id):
 	curent_node_id = id
@@ -101,31 +92,37 @@ func NextNode(id):
 
 #----Handle Current Node-----#
 func HandleNode():
-	if curent_node_id < 0 :
+	if !GrabNode(curent_node_id):
 		EndDialogue()
-	else:
-		if !GrabNode(curent_node_id):
-			EndDialogue()
 	UpdateUI()
 	
 func GrabNode(id):
 	for node in nodes:
-		if int(node["id"]) == id:
-			curent_node_name = node["name"]
-			curent_node_text = node["text"]
-			curent_node_next_id = int(node["next_id"])
-			curent_node_choices = node["choices"]
-			texture = node["Texture"]
+		if  node == id:
+			curent_node_name = nodes[node]["name"]
+			curent_node_text = nodes[node]["text"]["en"]
+			
+			if nodes[node].has("next"):
+				curent_node_next_id = nodes[node]["next"]
+			else:
+				curent_node_next_id = "_NULL_"
+				
+			if nodes[node].has("choices"):
+				curent_node_choices = nodes[node]["choices"]
+			else:
+				curent_node_choices = []
+			
+			texture = nodes[node]["portrait"]
 			return true
 	return false
 
 #----Update UI-----#
 func UpdateUI():
-	if curent_node_id >= 0:
+	if curent_node_id != "_NULL_":
+
 		dialoguePanel.show()
 		
-		if texture != "":
-			sprite.texture = load(texture)
+		sprite.texture = load(texture)
 		
 		for x in dialogueButtons:
 			x.hide()
@@ -136,15 +133,14 @@ func UpdateUI():
 		dialogueName.text = curent_node_name
 		prueba(curent_node_text)
 		yield(self, "finprint")
-		#sprite.frame = frame
+
 		if curent_node_choices.size() > 0:
 			dialogueButtons[0].grab_focus()
 			for x in clamp(curent_node_choices.size(),0,3):
-				dialogueButtons[x].text = curent_node_choices[x]["text"]
+				dialogueButtons[x].text = curent_node_choices[x]["text"]["en"]
 				
 				#connecto to button
-				dialogueButtons[x].connect("pressed",self,"_on_Button_Pressed", [curent_node_choices[x]["next_id"]])
-				
+				dialogueButtons[x].connect("pressed",self,"_on_Button_Pressed", [curent_node_choices[x]["next"]])
 				dialogueButtons[x].show()
 				
 		else:
@@ -162,7 +158,7 @@ func UpdateUI():
 func _on_Button_Pressed(id):
 	NextNode(id)
 
-
+#imprimir texto
 func prueba(text):
 	var buscando = false
 	dialogueText.bbcode_text = ""
@@ -198,9 +194,6 @@ func prueba(text):
 	yield(get_tree().create_timer(timertime*5), "timeout")
 	talkSound.stop()
 	emit_signal("finprint")
-		
-
-
 
 
 func _on_Timer_timeout():
