@@ -10,6 +10,9 @@ signal no_health
 signal health_changed(value)
 signal max_health_changed(value)
 
+#posicion de spawn al generarse
+var spawn_position = Vector2.ZERO
+
 func set_max_health(value):
 	max_health = value
 	self.health = min(health,max_health)

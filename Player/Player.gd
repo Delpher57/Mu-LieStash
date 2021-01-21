@@ -37,14 +37,18 @@ onready var trail = $trail
 onready var sword = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 onready var blinkanim = $BlinkAnimation
+onready var dashanim = $DashAnimation
 
 export var invincibility_time = 0.5
-
+export var spawn_position = Vector2.ZERO
+var Boomerang = preload ("res://Player/Boomerang.tscn")
 
 func _ready():
 	stats.connect("no_health",self,"queue_free")
 	sword.knockback_vector = dash_vector
 	animationTree.active = true
+
+	
 
 
 func _physics_process(delta):
@@ -122,7 +126,6 @@ func atack_state(_delta):
 func boomerang_state(_delta):
 	if has_sword == true:
 		has_sword = false
-		var Boomerang = load ("res://Player/Boomerang.tscn")
 		var boomerang = Boomerang.instance()
 		add_child(boomerang)
 		boomerang.direccion = direccion_vision
@@ -136,6 +139,7 @@ func boomerang_state(_delta):
 
 func dash_state(_delta):
 	can_dash = false
+	dashanim.play("dash")
 	hurtbox.start_invincibility(.5)
 	
 	$Timer.start()

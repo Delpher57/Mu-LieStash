@@ -4,26 +4,26 @@
 [ext_resource path="res://tests/testnpc.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.86573, 3.87137 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 24, 0, 24, 24 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 4.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=5]
 radius = 13.2518
 
 [node name="Generic_NPC" instance=ExtResource( 2 )]
@@ -32,17 +32,16 @@ collision_mask = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -0.0944633, 8.02983 )
-scale = Vector2( 1, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="sombra" parent="." index="1"]
 position = Vector2( -0.0944672, 8.88004 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="2"]
-frames = SubResource( 6 )
+frames = SubResource( 4 )
 frame = 1
 playing = true
 
 [node name="CollisionShape2D" parent="DialogueHitBox" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 5 )
