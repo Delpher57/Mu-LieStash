@@ -1215,6 +1215,7 @@ script = ExtResource( 2 )
 invincibility_time = 0.75
 
 [node name="Sprite2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.384314 )
 position = Vector2( 0, 11.1006 )
 texture = ExtResource( 3 )
 

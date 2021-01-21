@@ -9,9 +9,9 @@ onready var topLeft = $Node/topleft
 onready var animationPlayer = $AnimationPlayer
 
 
-export var decay = 0.8  # How quickly the shaking stops [0, 1].
+export var decay = 0.75  # How quickly the shaking stops [0, 1].
 export var max_offset = Vector2(100, 75)  # Maximum hor/ver shake in pixels.
-export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
+export var max_roll = 0.15  # Maximum rotation in radians (use sparingly).
 export (NodePath) var target  # Assign the node this camera will follow.
 
 var trauma = 0.0  # Current shake strength.
@@ -38,9 +38,10 @@ func _process(delta):
 		trauma = max(trauma - decay * delta, 0)
 		normalshake()
 
-func shake(_num):
-	animationPlayer.play("hurtFlash")
-	trauma = .55
+func shake(num):
+	if num != PlayerStats.max_health:
+		animationPlayer.play("hurtFlash")
+		trauma = .6
 
 func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)

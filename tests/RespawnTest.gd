@@ -19,5 +19,5 @@ func _on_Button_pressed():
 	hide()
 
 func set_hearths(value):
-	if value == 0:
+	if value < 1:
 		show()

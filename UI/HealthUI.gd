@@ -43,5 +43,6 @@ func print_hearts():
 	stringH += ("/")
 	stringH += (str(max_hearts))
 	health_label_text.text = stringH
-	shake_label()
+	if hearts != max_hearts:
+		shake_label()
 	
