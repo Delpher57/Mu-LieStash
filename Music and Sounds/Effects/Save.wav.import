@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Save.wav-240d6e8ca6b8352c3ebbcc293cfe91d7.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Effects/Save.wav"
+dest_files=[ "res://.import/Save.wav-240d6e8ca6b8352c3ebbcc293cfe91d7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

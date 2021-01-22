@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explotion.wav-1d5e23e5a2a2654cf881c4b6a921b73a.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Effects/miniganmes/explotion.wav"
+dest_files=[ "res://.import/explotion.wav-1d5e23e5a2a2654cf881c4b6a921b73a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

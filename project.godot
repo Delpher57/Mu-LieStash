@@ -161,6 +161,7 @@ boomerang={
 2d_physics/layer_10="softcolitions"
 2d_physics/layer_11="talkhitbox"
 2d_physics/layer_12="SpawnhurtBox"
+2d_physics/layer_20="minigame colition"
 
 [rendering]
 

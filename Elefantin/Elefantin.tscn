@@ -597,7 +597,7 @@ start_node = "IDLE"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
 [sub_resource type="RectangleShape2D" id=34]
-extents = Vector2( 8.32672, 8.49789 )
+extents = Vector2( 5.77608, 4.53024 )
 
 [node name="Elefantin" type="KinematicBody2D"]
 collision_layer = 0
@@ -662,10 +662,9 @@ parameters/IDLE/blend_position = Vector2( 0, 0 )
 parameters/RUN/blend_position = Vector2( 0, 0 )
 
 [node name="softColition" parent="." instance=ExtResource( 5 )]
-visible = false
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
-position = Vector2( 0.0680847, 2.41446 )
+position = Vector2( -0.215317, 5.90978 )
 shape = SubResource( 34 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
