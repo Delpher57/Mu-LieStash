@@ -1308,6 +1308,9 @@ wait_time = 0.4
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+__meta__ = {
+"_editor_description_": "timer del dash"
+}
 
 [node name="dash_particles" type="Node2D" parent="."]
 position = Vector2( 0, 0.0244904 )

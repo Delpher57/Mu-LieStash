@@ -9,6 +9,8 @@ var can_move = true
 signal no_health
 signal health_changed(value)
 signal max_health_changed(value)
+# warning-ignore:unused_signal
+signal usingDash(value)
 
 #posicion de spawn al generarse
 var spawn_position = Vector2.ZERO

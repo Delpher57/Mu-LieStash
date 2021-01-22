@@ -143,6 +143,7 @@ func dash_state(_delta):
 	can_dash = false
 	dashanim.play("dash")
 	hurtbox.start_invincibility(.5)
+	stats.emit_signal("usingDash",$Timer.wait_time)
 	
 	$Timer.start()
 	$particle_timer.start()

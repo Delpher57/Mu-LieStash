@@ -48,14 +48,14 @@ func _ready():
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 	knockback = move_and_slide(knockback)
-	$"Minotaur - Sprite Sheet/Label".text = statestr
+	
 	match state:
 		
 		ATTACK:
-			statestr = "ATACK"
+
 			pass
 		IDLE:
-			statestr = "IDLE"
+
 			animationState.travel("IDLE")
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
@@ -64,7 +64,7 @@ func _physics_process(delta):
 				wandercontroler.start_wander_timer(rand_range(1,3))
 		
 		WANDER:
-			statestr = "WANDER"
+
 			seek_player()
 			if wandercontroler.get_time_left() == 0:
 				state = pick_random_state([IDLE,WANDER])
@@ -81,7 +81,7 @@ func _physics_process(delta):
 		
 		
 		CHASE:
-			statestr = "CHASE"
+
 			animationState.travel("RUN")
 			var player = playerdetectionzone.player
 			if player != null:

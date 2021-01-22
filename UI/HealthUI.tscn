@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
 [ext_resource path="res://UI/HeartUIEmpty.png" type="Texture" id=2]
@@ -7,19 +7,25 @@
 [ext_resource path="res://UI/HealtBar/0.png" type="Texture" id=5]
 [ext_resource path="res://UI/HealtBar/2.png" type="Texture" id=6]
 [ext_resource path="res://UI/HealtBar/1.png" type="Texture" id=7]
-
-[sub_resource type="DynamicFont" id=3]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 4 )
+[ext_resource path="res://UI/stamina/2.png" type="Texture" id=8]
+[ext_resource path="res://UI/stamina/0.png" type="Texture" id=9]
+[ext_resource path="res://UI/stamina/1.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "fadeout"
 
 [sub_resource type="Animation" id=4]
 resource_name = "shake"
@@ -110,7 +116,7 @@ margin_top = 1.49171
 margin_right = 1.30862
 margin_bottom = 15.4917
 rect_scale = Vector2( 1.36686, 1.36686 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "8/8"
 align = 1
@@ -123,12 +129,49 @@ margin_left = 5.9219
 margin_top = 3.2648
 margin_right = 45.9219
 margin_bottom = 17.2648
-theme = SubResource( 2 )
+theme = SubResource( 3 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "HP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="stamina" type="Control" parent="."]
+margin_top = 20.9286
+margin_right = 40.0
+margin_bottom = 60.9286
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="staminaCircle" type="TextureProgress" parent="stamina"]
+margin_left = 14.8606
+margin_top = 4.0621
+margin_right = 54.8606
+margin_bottom = 44.0621
+value = 100.0
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 8 )
+fill_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP2" type="Label" parent="stamina"]
+margin_left = 3.38907
+margin_top = 7.73885
+margin_right = 43.3891
+margin_bottom = 21.7388
+theme = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "ST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="stamina"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fadeout = SubResource( 5 )
 anims/shake = SubResource( 4 )
