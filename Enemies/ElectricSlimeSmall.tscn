@@ -74,8 +74,9 @@ radius = 98.2831
 [sub_resource type="CircleShape2D" id=17]
 radius = 5.25517
 
-[sub_resource type="CircleShape2D" id=18]
-radius = 7.541
+[sub_resource type="CapsuleShape2D" id=18]
+radius = 5.22958
+height = 9.67411
 
 [node name="ElectricSlimeSmall" instance=ExtResource( 3 )]
 FRICTION = 100
@@ -84,10 +85,12 @@ knockback_friction = 300
 knockback_speed = 100
 
 [node name="sombra" parent="." index="0"]
+position = Vector2( 0.198885, 10.4806 )
 texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 13 )
+frame = 1
 speed_scale = 1.0
 
 [node name="CollisionShape2D" parent="." index="2"]
@@ -117,17 +120,24 @@ visible = false
 position = Vector2( -0.0614489, 4.31822 )
 shape = SubResource( 17 )
 
+[node name="softColition" parent="." index="7"]
+position = Vector2( 0, 0.238155 )
+
 [node name="CollisionShape2D" parent="softColition" index="0"]
-visible = false
-position = Vector2( -0.143507, 4.20897 )
+position = Vector2( -0.262585, 5.69743 )
+rotation = -1.5708
 shape = SubResource( 18 )
 
 [node name="wanderControler" parent="." index="8"]
 wanderRange = 50
 
 [node name="VisibilityEnabler2D" parent="." index="9"]
+visible = false
 position = Vector2( 0.0968506, 2.71196 )
 scale = Vector2( 1.70705, 1.54239 )
+
+[node name="Exclamation" parent="." index="13"]
+position = Vector2( 0, 0.238155 )
 
 [editable path="Hurtbox"]
 

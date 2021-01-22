@@ -44,8 +44,8 @@ radius = 13.4988
 height = 16.1018
 
 [sub_resource type="CapsuleShape2D" id=10]
-radius = 14.2488
-height = 13.5809
+radius = 11.2769
+height = 29.3153
 
 [node name="GiantElectricSlime" instance=ExtResource( 1 )]
 FRICTION = 100
@@ -55,7 +55,7 @@ knockback_friction = 450
 knockback_speed = 75
 
 [node name="sombra" parent="." index="0"]
-position = Vector2( 0.628176, 24.6232 )
+position = Vector2( 0.628176, 24.3737 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
@@ -93,8 +93,11 @@ position = Vector2( 0.59845, 15.9042 )
 rotation = -1.5708
 shape = SubResource( 9 )
 
+[node name="softColition" parent="." index="7"]
+position = Vector2( 0, -0.249477 )
+
 [node name="CollisionShape2D" parent="softColition" index="0"]
-position = Vector2( 0.612479, 14.0599 )
+position = Vector2( -0.0868161, 19.4795 )
 rotation = -1.5708
 shape = SubResource( 10 )
 
@@ -105,6 +108,9 @@ wanderRange = 20
 visible = false
 position = Vector2( 0.0830387, 10.4632 )
 scale = Vector2( 4.06424, 2.7937 )
+
+[node name="Exclamation" parent="." index="13"]
+position = Vector2( 0, -0.249477 )
 
 [editable path="Hurtbox"]
 

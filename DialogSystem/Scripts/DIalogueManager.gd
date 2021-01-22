@@ -31,6 +31,7 @@ var nodes # containes all the nodes of the current dialogue
 
 var sound_on = false
 signal finprint
+var reveal_speed = 25
 
 #----DATA (from file)-----#
 var curent_node_id # handles the current node we are traversing Note: -1 exits the dialogue
@@ -48,7 +49,7 @@ onready var dialogueName = $DialogueName
 onready var dialogueButtons = [$Control/DialogueButton,$Control/DialogueButton2,$Control/DialogueButton3,$Control/DialogueButton4]
 onready var sprite = $Sprite
 onready var talkSound = $talksound
-onready var timer = $Timer
+
 
 func iniciar_dialogo(archivo):
 # warning-ignore:return_value_discarded
@@ -160,42 +161,40 @@ func _on_Button_Pressed(id):
 
 #imprimir texto
 func prueba(text):
-	var buscando = false
-	dialogueText.bbcode_text = ""
-	var timertime = .02
-	var tempbb = ""
-	for c in(text):
-		if buscando == true:
-			if c == ']':
-				tempbb += c
-				dialogueText.bbcode_text += tempbb
-				buscando = false
-				continue
-			else:
-				tempbb += c
-				continue
-		if c == '[':
-			buscando = true
-			tempbb = ""
-			tempbb += c
-			continue
-		
-		if sound_on == false:
-			talkSound.play()
-			sound_on = true
-			timer.start(timertime*5)
-		if Input.is_action_pressed("dash"):
-			timertime = 0
-			
-		dialogueText.bbcode_text += c
-		if timertime == 0:
-			continue
-		yield(get_tree().create_timer(timertime), "timeout")
-	yield(get_tree().create_timer(timertime*5), "timeout")
-	talkSound.stop()
+	dialogueText.percent_visible = 0
+	dialogueText.bbcode_text = text
+
+	#hacemos que la velocidad sea independiente del tamaño del texto
+	var time = dialogueText.bbcode_text.length() / reveal_speed
+	talkSound.play()
+	$Tween.interpolate_property(dialogueText, "percent_visible", 0, 1, \
+		time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+	talkSound.play()
+
+
+
+
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+func _on_Tween_tween_completed(object, key):
 	emit_signal("finprint")
 
-
-func _on_Timer_timeout():
-	pass
-	sound_on = false
+var stepper = true
+var counter_stepper = 5
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
+func _on_Tween_tween_step(object, key, elapsed, value):
+	if Input.is_action_just_pressed("dash"):
+		dialogueText.percent_visible = 1
+		emit_signal("finprint")
+		$Tween.stop_all()
+	if stepper == true and counter_stepper == 5:
+		talkSound.play()
+		counter_stepper = 0
+		stepper = false
+	else:
+		stepper = true
+		counter_stepper += 1

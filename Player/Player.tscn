@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Player/MU_PICO8.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Hurtboxes + HitBoxes/Hurtbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Music and Sounds/Effects/SwordSlash.wav" type="AudioStream" id=9]
 [ext_resource path="res://General/whiteColorShader.shader" type="Shader" id=10]
+[ext_resource path="res://Hurtboxes + HitBoxes/softColition.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.013245, 0.980132 )
@@ -1205,10 +1206,12 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.34769, 0.782081 ), Vector2( 0.850639, 1.0759 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=55]
+extents = Vector2( 5.11863, 2.41943 )
+
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
-position = Vector2( 0, -8 )
 collision_layer = 2050
 collision_mask = 2049
 script = ExtResource( 2 )
@@ -1216,12 +1219,12 @@ invincibility_time = 0.75
 
 [node name="Sprite2" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.384314 )
-position = Vector2( 0, 11.1006 )
+position = Vector2( 0, 11.1251 )
 texture = ExtResource( 3 )
 
 [node name="trail" type="CPUParticles2D" parent="."]
 self_modulate = Color( 100, 100, 100, 1 )
-position = Vector2( 0.0336113, 10.9507 )
+position = Vector2( 0.0336113, 10.9752 )
 amount = 5
 lifetime = 0.5
 explosiveness = 0.8
@@ -1253,7 +1256,7 @@ __meta__ = {
 }
 
 [node name="colision" type="CollisionShape2D" parent="."]
-position = Vector2( 0.950272, 9.35651 )
+position = Vector2( 0.612553, 9.49357 )
 rotation = -1.5708
 shape = SubResource( 3 )
 
@@ -1285,10 +1288,11 @@ parameters/Idle/blend_position = Vector2( 1, 0 )
 parameters/Run/blend_position = Vector2( 1, 0 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
-position = Vector2( 1.46196, 2.85082 )
+position = Vector2( 1.46196, 15.1459 )
 rotation = 1.5708
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 8.89947, -0.689395 )
 collision_mask = 1040
 script = ExtResource( 7 )
@@ -1306,6 +1310,7 @@ wait_time = 0.4
 wait_time = 0.5
 
 [node name="dash_particles" type="Node2D" parent="."]
+position = Vector2( 0, 0.0244904 )
 
 [node name="sparks" type="CPUParticles2D" parent="dash_particles"]
 emitting = false
@@ -1349,12 +1354,14 @@ scale_amount = 0.3
 color_ramp = SubResource( 50 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0, 0.0244904 )
 collision_layer = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 modulate = Color( 0.266667, 1, 0, 1 )
 position = Vector2( 0.761314, 1.91133 )
 shape = SubResource( 51 )
+disabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
@@ -1366,6 +1373,13 @@ anims/Stop = SubResource( 53 )
 
 [node name="DashAnimation" type="AnimationPlayer" parent="."]
 anims/dash = SubResource( 54 )
+
+[node name="softColition" parent="." instance=ExtResource( 11 )]
+position = Vector2( 0, 0.0244904 )
+
+[node name="CollisionShape2D" parent="softColition" index="0"]
+position = Vector2( 0.569511, 10.1348 )
+shape = SubResource( 55 )
 [connection signal="timeout" from="particle_timer" to="." method="_on_particle_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
@@ -1375,3 +1389,5 @@ anims/dash = SubResource( 54 )
 [editable path="HitboxPivot/SwordHitbox"]
 
 [editable path="Hurtbox"]
+
+[editable path="softColition"]

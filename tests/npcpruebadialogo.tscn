@@ -31,16 +31,19 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2( -0.0944633, 8.02983 )
+position = Vector2( -0.0944633, 8.1243 )
 shape = SubResource( 1 )
 
 [node name="sombra" parent="." index="1"]
-position = Vector2( -0.0944672, 8.88004 )
+position = Vector2( -0.0944672, 8.97451 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="2"]
 frames = SubResource( 4 )
 playing = true
+
+[node name="DialogueHitBox" parent="." index="3"]
+position = Vector2( 0, 0.094471 )
 
 [node name="CollisionShape2D" parent="DialogueHitBox" index="0"]
 shape = SubResource( 5 )

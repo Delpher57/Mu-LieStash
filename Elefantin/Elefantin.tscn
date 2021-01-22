@@ -608,7 +608,7 @@ MAX_SPEED = 100
 
 [node name="sombra" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.490196 )
-position = Vector2( -0.283401, 9.16337 )
+position = Vector2( -0.283401, 9.0689 )
 texture = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -618,7 +618,7 @@ hframes = 7
 frame = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.231964, 7.65479 )
+position = Vector2( -0.231964, 7.56032 )
 rotation = -1.5708
 shape = SubResource( 1 )
 
@@ -662,6 +662,7 @@ parameters/IDLE/blend_position = Vector2( 0, 0 )
 parameters/RUN/blend_position = Vector2( 0, 0 )
 
 [node name="softColition" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -0.0944691 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
 position = Vector2( -0.215317, 5.90978 )

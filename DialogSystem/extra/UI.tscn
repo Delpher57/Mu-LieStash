@@ -77,6 +77,10 @@ margin_top = 98.0
 margin_right = 90.0
 margin_bottom = 118.0
 text = "Continue"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DialogueButton2" type="Button" parent="Control"]
 visible = false
@@ -85,6 +89,7 @@ margin_top = 66.0
 margin_right = 89.0
 margin_bottom = 86.0
 text = "Continue"
+align = 0
 
 [node name="DialogueButton3" type="Button" parent="Control"]
 visible = false
@@ -93,6 +98,7 @@ margin_top = 35.0
 margin_right = 89.0
 margin_bottom = 55.0
 text = "Continue"
+align = 0
 
 [node name="DialogueButton4" type="Button" parent="Control"]
 visible = false
@@ -101,9 +107,11 @@ margin_top = 5.0
 margin_right = 89.0
 margin_bottom = 25.0
 text = "Continue"
+align = 0
 
 [node name="talksound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
-[node name="Timer" type="Timer" parent="."]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="Tween" type="Tween" parent="."]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="tween_step" from="Tween" to="." method="_on_Tween_tween_step"]

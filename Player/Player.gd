@@ -69,9 +69,11 @@ func _physics_process(delta):
 
 func move_state(delta):
 	is_talking = false
-	if stats.can_move != true:
+	if stats.can_move == false:
 		trail.emitting = false
 		animationState.travel("Idle")
+		velocity = Vector2.ZERO
+		knockback = Vector2.ZERO
 		is_talking = true
 	else:
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -174,7 +176,7 @@ func _on_particle_timer_timeout():
 
 
 func _on_Hurtbox_area_entered(area):
-	if is_talking != true:
+	if is_talking == false:
 		Effects.reproducirEfect("Hurt",6)
 		
 		hurtbox.start_invincibility(invincibility_time)

@@ -12,13 +12,16 @@ func _on_playHitbox_area_entered(_area):
 func _on_DialogueButton_pressed():
 	var game = Game.instance()
 	call_deferred("add_child", game)
-	
 	$CanvasLayer/DialogueUI.hide()
+	$MenuClick.play()
+
 
 #boton no
 func _on_DialogueButton2_pressed():
+	$MenuClick.play()
 	$CanvasLayer/DialogueUI.hide()
 	PlayerStats.can_move = true
+	
 
 #boton si
 func _on_DialogueButton3_pressed():

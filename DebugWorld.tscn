@@ -690,7 +690,7 @@ position = Vector2( -1023.15, -20.005 )
 position = Vector2( -25.2191, 16.1989 )
 
 [node name="Minotauro" parent="YSort/Slimes" instance=ExtResource( 18 )]
-position = Vector2( -348.681, 258.894 )
+position = Vector2( -942.023, 11.0195 )
 
 [node name="Minotauro2" parent="YSort/Slimes" instance=ExtResource( 18 )]
 position = Vector2( -266.561, 531.418 )
@@ -723,7 +723,7 @@ position = Vector2( -195.911, 385.282 )
 
 [node name="Generic_NPC" parent="YSort/NPCs" instance=ExtResource( 12 )]
 position = Vector2( -844.173, 19.6136 )
-dialogo = "pruebanew4"
+dialogo = "TestNew11"
 
 [node name="Decoracion" type="YSort" parent="YSort"]
 
