@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Effects/RedDamage.png" type="Texture" id=1]
 [ext_resource path="res://MinijuegosArcade/Blastiny/naveBlastiny.png" type="Texture" id=2]
@@ -6,17 +6,19 @@
 [ext_resource path="res://MinijuegosArcade/Blastiny/alienBlastiny.png" type="Texture" id=4]
 [ext_resource path="res://MinijuegosArcade/Blastiny/Alien.gd" type="Script" id=5]
 [ext_resource path="res://MinijuegosArcade/Blastiny/Blastiny.gd" type="Script" id=6]
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1.91331, 19.94 )
+[ext_resource path="res://Effects/CRTEffect.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MinijuegosArcade/Blastiny/arcadeoverlayTest.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1.45588, 0.570639 )
+extents = Vector2( 1.91331, 21.5313 )
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.45588, 0.570639 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2.62484, 1.78578 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "fadeIn"
 length = 0.6
 tracks/0/type = "value"
@@ -32,8 +34,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "fadeOut"
+[sub_resource type="Animation" id=5]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -51,53 +52,55 @@ tracks/0/keys = {
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="Blastiny" type="Node2D" parent="."]
-position = Vector2( 104.361, 7.80272 )
-scale = Vector2( 3.44143, 3.44143 )
+position = Vector2( 110.815, 28.7028 )
+scale = Vector2( 3.56856, 3.56856 )
 script = ExtResource( 6 )
 
 [node name="fondo3" type="Sprite" parent="Blastiny"]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 15.8068, 15.9354 )
-scale = Vector2( 1.09829, 1.09829 )
+modulate = Color( 0, 0.117647, 0.317647, 1 )
+position = Vector2( 15.5915, 15.677 )
+scale = Vector2( 1.45088, 1.15212 )
 texture = ExtResource( 1 )
 
 [node name="fondo2" type="Sprite" parent="Blastiny"]
+visible = false
 position = Vector2( 15.8068, 15.9354 )
 scale = Vector2( 1.05663, 1.05663 )
 texture = ExtResource( 1 )
 
 [node name="fondo" type="Sprite" parent="Blastiny"]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 15.8068, 15.9354 )
 texture = ExtResource( 1 )
 
 [node name="derecha" type="StaticBody2D" parent="Blastiny"]
-position = Vector2( 34.9103, -0.695889 )
+position = Vector2( 39.1306, -0.695889 )
 collision_layer = 524288
 collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/derecha"]
 position = Vector2( -1.57777, 18.1444 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="izquierda" type="StaticBody2D" parent="Blastiny"]
-position = Vector2( -0.34794, -1.62374 )
+position = Vector2( -6.0324, -1.70987 )
 collision_layer = 524288
 collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/izquierda"]
 position = Vector2( -1.57777, 18.1444 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="top" type="Area2D" parent="Blastiny"]
-position = Vector2( 34.0723, 0.497105 )
+position = Vector2( 33.211, -0.622566 )
 rotation = 1.56863
 collision_layer = 524288
 collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/top"]
 position = Vector2( -1.57777, 18.1444 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Nave" type="KinematicBody2D" parent="Blastiny"]
 position = Vector2( 15.8327, 28.3389 )
@@ -107,7 +110,7 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/Nave"]
 position = Vector2( -0.100729, 2.62333 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Blastiny/Nave"]
 position = Vector2( 0.448093, 0.0746841 )
@@ -129,7 +132,7 @@ collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/Alien/Area2D"]
 position = Vector2( 16.618, 5.97809 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Blastiny/Alien"]
 texture = ExtResource( 4 )
@@ -148,16 +151,59 @@ collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/Alien2/Area2D"]
 position = Vector2( 16.618, 5.97809 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Blastiny/Alien2"]
 texture = ExtResource( 4 )
 
+[node name="Alien3" type="KinematicBody2D" parent="Blastiny"]
+position = Vector2( 29.7119, 14.9227 )
+collision_layer = 524288
+collision_mask = 524288
+script = ExtResource( 5 )
+direction = Vector2( 1, 0 )
+
+[node name="Area2D" type="Area2D" parent="Blastiny/Alien3"]
+position = Vector2( -16.6903, -6.37083 )
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blastiny/Alien3/Area2D"]
+position = Vector2( 16.618, 5.97809 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Blastiny/Alien3"]
+texture = ExtResource( 4 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Blastiny"]
 autoplay = "fadeIn"
-anims/fadeIn = SubResource( 5 )
-anims/fadeOut = SubResource( 4 )
+anims/fadeIn = SubResource( 4 )
+anims/fadeOut = SubResource( 5 )
+
+[node name="CRTEffect" parent="Blastiny" instance=ExtResource( 7 )]
+position = Vector2( -22.7149, -8.77245 )
+scale = Vector2( 0.118817, 0.212563 )
+z_index = 3
+
+[node name="TextureRect" parent="Blastiny/CRTEffect" index="0"]
+margin_left = 121.0
+margin_top = 29.0
+margin_right = 518.0
+margin_bottom = 205.0
+
+[node name="Sprite" parent="Blastiny/CRTEffect" index="1"]
+position = Vector2( 319.656, 115.913 )
+scale = Vector2( 0.357165, 0.211507 )
+
+[node name="Sprite2" type="Sprite" parent="Blastiny/CRTEffect"]
+position = Vector2( -70.1783, 3.43061 )
+scale = Vector2( 2.35846, 1.31832 )
+texture = ExtResource( 8 )
+centered = false
 [connection signal="timeout" from="Blastiny/Nave/Timer" to="Blastiny/Nave" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Blastiny/Alien/Area2D" to="Blastiny/Alien" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Blastiny/Alien2/Area2D" to="Blastiny/Alien2" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Blastiny/Alien3/Area2D" to="Blastiny/Alien3" method="_on_Area2D_body_entered"]
 [connection signal="animation_finished" from="Blastiny/AnimationPlayer" to="Blastiny" method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Blastiny/CRTEffect"]

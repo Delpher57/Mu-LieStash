@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
 [ext_resource path="res://UI/HeartUIEmpty.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://UI/stamina/2.png" type="Texture" id=8]
 [ext_resource path="res://UI/stamina/0.png" type="Texture" id=9]
 [ext_resource path="res://UI/stamina/1.png" type="Texture" id=10]
+[ext_resource path="res://UI/Indicadores/0.png" type="Texture" id=11]
+[ext_resource path="res://UI/Indicadores/1.png" type="Texture" id=12]
+[ext_resource path="res://UI/Indicadores/3.png" type="Texture" id=13]
+[ext_resource path="res://UI/Indicadores/2.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -24,11 +28,10 @@ font_data = ExtResource( 4 )
 [sub_resource type="Theme" id=3]
 default_font = SubResource( 2 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "fadeout"
 
-[sub_resource type="Animation" id=4]
-resource_name = "shake"
+[sub_resource type="Animation" id=5]
 length = 0.55
 step = 0.025
 tracks/0/type = "value"
@@ -172,6 +175,39 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="stamina"]
 
+[node name="Indicadores" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Espada" type="TextureProgress" parent="Indicadores"]
+margin_left = 1.34306
+margin_top = 50.3839
+margin_right = 41.3431
+margin_bottom = 90.3839
+max_value = 1.0
+value = 1.0
+texture_under = ExtResource( 12 )
+texture_progress = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inmortal" type="TextureProgress" parent="Indicadores"]
+margin_left = 17.8855
+margin_top = 50.0991
+margin_right = 57.8855
+margin_bottom = 90.0991
+max_value = 1.0
+value = 1.0
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fadeout = SubResource( 5 )
-anims/shake = SubResource( 4 )
+anims/fadeout = SubResource( 4 )
+anims/shake = SubResource( 5 )

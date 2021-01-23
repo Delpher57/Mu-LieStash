@@ -21,9 +21,10 @@ var stats = PlayerStats
 #le mandamos esto al boomerang para saber la dirección
 var direccion_vision = Vector2.RIGHT
 
-var has_sword = true
+
 var can_dash = true
 var is_talking = false
+var has_sword = true
 
 #knockback al ser golpeados
 var knockback = Vector2.ZERO
@@ -38,6 +39,7 @@ onready var sword = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 onready var blinkanim = $BlinkAnimation
 onready var dashanim = $DashAnimation
+onready var camera = get_tree().get_nodes_in_group("Camera")[0]
 
 export var invincibility_time = 0.5
 export var spawn_position = Vector2.ZERO
@@ -47,6 +49,7 @@ func _ready():
 	stats.connect("no_health",self,"queue_free")
 	sword.knockback_vector = dash_vector
 	animationTree.active = true
+	stats.can_move = true
 
 	
 
@@ -113,6 +116,7 @@ func move_state(delta):
 		if Input.is_action_just_pressed("attack"):
 			if has_sword == true:
 				Effects.reproducirEfect("SwordSlash",4)
+				Input.start_joy_vibration(0,0.05,0.06,0.06)
 				state = ATTACK
 		
 		if Input.is_action_just_pressed("boomerang"):
@@ -122,27 +126,35 @@ func move_state(delta):
 
 func atack_state(_delta):
 	velocity = Vector2.ZERO
+	
 	animationState.travel("Attack")
+	camera.set_trauma(.1)
 	pass
 
 func boomerang_state(_delta):
 	if has_sword == true:
+		Input.start_joy_vibration(0,0.05,0.06,0.06)
 		has_sword = false
+		stats.has_sword = false
 		var boomerang = Boomerang.instance()
 		add_child(boomerang)
 		boomerang.direccion = direccion_vision
 		boomerang.set_dir_hitbox()
 		boomerang.throw()
-		
-		
+		camera.set_trauma(.2)
+		velocity = Vector2.ZERO
 		animationState.travel("Boomerang")
+		stats.has_sword = false
 		
 	pass
 
 func dash_state(_delta):
+	Input.start_joy_vibration(0,0.05,0.06,0.1)
 	can_dash = false
 	dashanim.play("dash")
+	
 	hurtbox.start_invincibility(.5)
+	camera.set_trauma(.01)
 	stats.emit_signal("usingDash",$Timer.wait_time)
 	
 	$Timer.start()
@@ -179,6 +191,7 @@ func _on_particle_timer_timeout():
 func _on_Hurtbox_area_entered(area):
 	if is_talking == false:
 		Effects.reproducirEfect("Hurt",6)
+		Input.start_joy_vibration(0,0.9,1,0.2)
 		
 		hurtbox.start_invincibility(invincibility_time)
 		hurtbox.create_hit_effect()
@@ -187,9 +200,11 @@ func _on_Hurtbox_area_entered(area):
 
 #con estas dos manejamos el blink
 func _on_Hurtbox_invinsibility_started():
+	stats.inmortal = true
 	if can_dash == true:
 		blinkanim.play("Start")
 
 
 func _on_Hurtbox_invinsibility_ended():
 	blinkanim.play("Stop")
+	stats.inmortal = false

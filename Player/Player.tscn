@@ -1364,7 +1364,6 @@ collision_layer = 8
 modulate = Color( 0.266667, 1, 0, 1 )
 position = Vector2( 0.761314, 1.91133 )
 shape = SubResource( 51 )
-disabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )

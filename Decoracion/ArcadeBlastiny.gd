@@ -6,7 +6,7 @@ const Game = preload("res://MinijuegosArcade/Blastiny/Blastiny.tscn")
 func _on_playHitbox_area_entered(_area):
 	PlayerStats.can_move = false
 	$CanvasLayer/DialogueUI.show()
-	$CanvasLayer/DialogueUI.dialogueButtons[0].grab_focus()
+	$CanvasLayer/DialogueUI.dialogueButtons[2].grab_focus()
 
 #botonJugar
 func _on_DialogueButton_pressed():

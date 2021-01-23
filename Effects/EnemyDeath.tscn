@@ -53,5 +53,5 @@ animations = [ {
 
 [node name="EnemyDeath" type="AnimatedSprite"]
 frames = SubResource( 11 )
-frame = 9
+frame = 3
 script = ExtResource( 2 )

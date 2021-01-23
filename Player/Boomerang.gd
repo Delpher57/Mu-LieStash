@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 enum {IDLE, FLY, STICK}
 export (float) var throw_speed = 2 * 60
+export (float) var return_speed = 2 * 60
 onready var parent: = get_parent()
 var state: int = IDLE
 var velocity: = Vector2.ZERO
@@ -39,11 +40,13 @@ func stick(delta:float)->void:
 	var target: = get_target()
 	var dist = global_position.distance_to(target)
 	if dist < throw_speed * delta:
-		parent.has_sword = true
+		Input.start_joy_vibration(0,0.05,0.06,0.06)
+		PlayerStats.has_sword = true
+		get_parent().has_sword = true
 		Effects.reproducirEfect("BoomerangCatch",5)
 		queue_free()
 	else:
-		pos = pos.linear_interpolate(target, (throw_speed * delta)/dist)
+		pos = pos.linear_interpolate(target, (return_speed * delta)/dist)
 		self.global_position = pos
 		$Hitbox.knockback_vector = (target - global_position).normalized()
 

@@ -41,7 +41,7 @@ func _process(delta):
 func shake(num):
 	if num != PlayerStats.max_health:
 		animationPlayer.play("hurtFlash")
-		trauma = .6
+		set_trauma(.6)
 
 func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)
@@ -53,3 +53,7 @@ func normalshake():
 	rotation = max_roll * amount * noise.get_noise_2d(noise.seed, noise_y)
 	offset.x = max_offset.x * amount * noise.get_noise_2d(noise.seed*2, noise_y)
 	offset.y = max_offset.y * amount * noise.get_noise_2d(noise.seed*3, noise_y)
+
+func set_trauma(value):
+	if value > trauma:
+		trauma = value

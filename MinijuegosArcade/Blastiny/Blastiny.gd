@@ -1,6 +1,6 @@
 extends Node2D
 
-var num_vivos = 2 setget view_vivos
+var num_vivos = 3 setget view_vivos
 
 
 func view_vivos(value):

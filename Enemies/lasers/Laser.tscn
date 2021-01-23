@@ -1,0 +1,286 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Hurtboxes + HitBoxes/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/lasers/azulSmall.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/lasers/Laser.gd" type="Script" id=3]
+[ext_resource path="res://Music and Sounds/Effects/EnemyShoot.wav" type="AudioStream" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.355705, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 1, 0.956055, 1, 0, 0.317383, 1, 0 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.36459, 2.50011 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "DIE"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles2D2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CPUParticles2D3:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_movement"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Pulse"
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 0.517632, 1, 0.378929 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.20712, 1.20712 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.35
+step = 0.005
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.105 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -0.525196, -0.393898 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.105, 0.205, 0.255, 0.345 ),
+"transitions": PoolRealArray( 2, 3.03143, 2.2974, 3.03143 ),
+"update": 0,
+"values": [ Vector2( 0.74093, 0.74093 ), Vector2( 1, 1 ), Vector2( 0.964623, 0.964623 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.105, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 3.13834 ),
+"update": 0,
+"values": [ Color( 100, 100, 100, 0 ), Color( 100, 100, 100, 0 ), Color( 100, 100, 100, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CPUParticles2D2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+z_index = 1
+script = ExtResource( 3 )
+MAX_SPEED = 120
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+scale = Vector2( 0.603542, 0.603542 )
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 2.68
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 34.61
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.5
+orbit_velocity_random = 1.0
+linear_accel = 34.79
+linear_accel_random = 0.71
+radial_accel = 36.96
+angle = 511.6
+angle_random = 1.0
+scale_amount = 10.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 1 )
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+scale = Vector2( 0.603542, 0.603542 )
+emitting = false
+amount = 20
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 2.68
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 34.61
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.5
+orbit_velocity_random = 1.0
+linear_accel = 34.79
+linear_accel_random = 0.71
+radial_accel = 36.96
+angle = 511.6
+angle_random = 1.0
+scale_amount = 3.0
+scale_amount_random = 1.0
+color_ramp = SubResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.3
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 2.68
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 2.0
+angular_velocity = 46.96
+angular_velocity_random = 1.0
+orbit_velocity = 0.1
+linear_accel = 34.79
+linear_accel_random = 0.71
+radial_accel = 36.96
+angle = 511.6
+angle_random = 1.0
+color_ramp = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -0.525196, -0.393898 )
+texture = ExtResource( 2 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -0.525196, -0.393898 )
+collision_mask = 1069
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0.525196, 0.437662 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Summonn"
+anims/DIE = SubResource( 5 )
+anims/Pulse = SubResource( 3 )
+anims/Summonn = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0.196948, -0.153182 )
+scale = Vector2( 0.647681, 0.669564 )
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]
+[connection signal="viewport_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_viewport_exited"]
+
+[editable path="Hitbox"]

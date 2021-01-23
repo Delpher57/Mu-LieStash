@@ -1,7 +1,7 @@
 extends KinematicBody2D
 var statestr = ""
 
-const DeathEffect = preload("res://Effects/EnemyDeath.tscn")
+const DeathEffect = preload("res://Effects/explosion.tscn")
 enum {
 	IDLE,
 	WANDER,
@@ -125,7 +125,7 @@ func pick_random_state(state_list):
 
 func _on_Hurtbox_area_entered(area):
 	if state != ATTACK:
-		camera.trauma = shakeamount
+		camera.set_trauma(shakeamount)
 		$hit_anim.play("hit")
 		$AudioStreamPlayer.play()
 		stats.health -= area.damage
@@ -137,7 +137,7 @@ func _on_Hurtbox_area_entered(area):
 
 func _on_Stats_no_health():
 	Effects.reproducirEfect("EnemyDie",0)
-	camera.trauma = shakeamount*1.5
+	camera.set_trauma(shakeamount*1.5)
 	create_death_effect()
 	queue_free()
 

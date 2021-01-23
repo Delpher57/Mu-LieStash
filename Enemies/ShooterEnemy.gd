@@ -1,10 +1,16 @@
 extends KinematicBody2D
 
 const DeathEffect = preload("res://Effects/explosion.tscn")
+export var Laser = preload("res://Enemies/lasers/Laser.tscn")
+
+export var shoot_time_range_min = 1.0
+export var shoot_time_range_max = 5.0
+
 enum {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	SHOOT
 }
 var state = WANDER
 
@@ -30,9 +36,12 @@ onready var camera = get_tree().get_nodes_in_group("Camera")[0]
 onready var hurtanim = $HurtAnim
 onready var exclamationAnim = $ExclamationAnim
 onready var audio = $AudioStreamPlayer
+onready var shoot_timer = $ShootTimer
+onready var shoot_anim = $ShootAnim
 
 var exclamation_played = false
 export var shakeamount = .2
+var can_shoot = true
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -68,9 +77,26 @@ func _physics_process(delta):
 					exclamationAnim.play("exclamation")
 					exclamation_played = true
 				accelerate_towards_point(player.global_position,delta)
+				
+				if global_position.distance_to(player.global_position) < 55:
+					var direction =(global_position.direction_to(player.global_position)*-1).normalized()
+					hitbox.knockback_vectorH = direction
+					velocity = Vector2.ZERO
+					velocity = velocity.move_toward(direction * MAX_SPEED, 2000 * delta)
+					sprite.flip_h = velocity.x < 0
+			
+				elif global_position.distance_to(player.global_position) < 200:
+					if can_shoot == true:
+						shoot(player)
+				
+
+				
 			else:
 				state = IDLE
 				exclamation_played = false
+		
+
+			
 
 	
 	if softcolition.is_colliding():
@@ -87,6 +113,19 @@ func accelerate_towards_point(pos,delta):
 func seek_player():
 	if playerdetectionzone.can_see_player():
 		state = CHASE
+
+func shoot(player):
+	#knockback = global_position.direction_to(player.global_position) * (knockback_speed/2) * -1
+	shoot_anim.play("shoot")
+	velocity = Vector2.ZERO
+	can_shoot = false
+	shoot_timer.wait_time = rand_range(shoot_time_range_min,shoot_time_range_max)
+	shoot_timer.start()
+	var laser = Laser.instance()
+	get_parent().add_child(laser)
+	laser.global_position = global_position
+	laser.direction = global_position.direction_to(player.global_position).normalized()
+	state = IDLE
 
 
 func create_death_effect():
@@ -121,3 +160,7 @@ func _on_Stats_no_health():
 func _on_DieAnim_animation_finished(anim_name):
 	if (anim_name == "Die"):
 		queue_free()
+
+
+func _on_ShootTimer_timeout():
+	can_shoot = true
