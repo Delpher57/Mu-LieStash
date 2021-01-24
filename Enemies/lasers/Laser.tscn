@@ -12,7 +12,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0, 1, 0.956055, 1, 0, 0.317383, 1, 0 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 2.36459, 2.50011 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "DIE"
 length = 0.5
 tracks/0/type = "value"
@@ -81,8 +81,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Pulse"
+[sub_resource type="Animation" id=4]
 length = 0.4
 loop = true
 step = 0.05
@@ -99,7 +98,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.20712, 1.20712 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.35
 step = 0.005
 tracks/0/type = "value"
@@ -258,7 +257,7 @@ texture = ExtResource( 2 )
 [node name="Hitbox" parent="." instance=ExtResource( 1 )]
 visible = false
 position = Vector2( -0.525196, -0.393898 )
-collision_mask = 1069
+collision_mask = 45
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 0.525196, 0.437662 )
@@ -266,9 +265,9 @@ shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Summonn"
-anims/DIE = SubResource( 5 )
-anims/Pulse = SubResource( 3 )
-anims/Summonn = SubResource( 4 )
+anims/DIE = SubResource( 3 )
+anims/Pulse = SubResource( 4 )
+anims/Summonn = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

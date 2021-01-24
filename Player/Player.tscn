@@ -1,11 +1,10 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Player/MU_PICO8.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=3]
 [ext_resource path="res://Particles/white ball.png" type="Texture" id=4]
 [ext_resource path="res://Hurtboxes + HitBoxes/Hitbox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Particles/star.png" type="Texture" id=6]
 [ext_resource path="res://Player/SwordHitbox.gd" type="Script" id=7]
 [ext_resource path="res://Hurtboxes + HitBoxes/Hurtbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Music and Sounds/Effects/SwordSlash.wav" type="AudioStream" id=9]
@@ -1111,8 +1110,7 @@ radius = 9.75307
 height = 2.90197
 
 [sub_resource type="Gradient" id=49]
-offsets = PoolRealArray( 0.0993377, 1 )
-colors = PoolColorArray( 0.992188, 0, 1, 1, 0.992157, 0, 1, 0 )
+colors = PoolColorArray( 0.95752, 0, 0.922922, 1, 0, 0.113725, 1, 0 )
 
 [sub_resource type="Gradient" id=50]
 offsets = PoolRealArray( 0.284768, 1 )
@@ -1256,6 +1254,7 @@ __meta__ = {
 }
 
 [node name="colision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0.612553, 9.49357 )
 rotation = -1.5708
 shape = SubResource( 3 )
@@ -1288,6 +1287,7 @@ parameters/Idle/blend_position = Vector2( 1, 0 )
 parameters/Run/blend_position = Vector2( 1, 0 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
+visible = false
 position = Vector2( 1.46196, 15.1459 )
 rotation = 1.5708
 
@@ -1318,19 +1318,23 @@ position = Vector2( 0, 0.0244904 )
 [node name="sparks" type="CPUParticles2D" parent="dash_particles"]
 emitting = false
 amount = 50
+lifetime = 0.5
+lifetime_randomness = 0.5
 local_coords = false
-texture = ExtResource( 6 )
-emission_shape = 1
-emission_sphere_radius = 10.63
+emission_shape = 2
+emission_rect_extents = Vector2( 6, 8 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 0.1
-angular_velocity = 402.58
+initial_velocity = 0.01
+angular_velocity = 720.0
 angular_velocity_random = 1.0
-radial_accel = -6.45
-angle = 108.4
+linear_accel = 6.52
+radial_accel = -100.0
+damping = 71.74
+angle = 720.0
 angle_random = 1.0
-scale_amount = 0.8
+scale_amount = 2.0
+scale_amount_random = 1.0
 color_ramp = SubResource( 49 )
 hue_variation = 1.0
 hue_variation_random = 1.0
@@ -1361,7 +1365,6 @@ position = Vector2( 0, 0.0244904 )
 collision_layer = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-modulate = Color( 0.266667, 1, 0, 1 )
 position = Vector2( 0.761314, 1.91133 )
 shape = SubResource( 51 )
 
@@ -1377,6 +1380,7 @@ anims/Stop = SubResource( 53 )
 anims/dash = SubResource( 54 )
 
 [node name="softColition" parent="." instance=ExtResource( 11 )]
+visible = false
 position = Vector2( 0, 0.0244904 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
