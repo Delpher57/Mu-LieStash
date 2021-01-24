@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player/BOOMERAND_PICO8.png" type="Texture" id=1]
 [ext_resource path="res://Player/Boomerang.gd" type="Script" id=2]
@@ -115,11 +115,12 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="CircleShape2D" id=21]
+radius = 8.81493
+
 [node name="Boomerang" type="KinematicBody2D"]
 collision_layer = 0
-collision_mask = 4
 script = ExtResource( 2 )
-throw_speed = 120.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( -0.445114, 0.509907 )
@@ -176,7 +177,7 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.9, 0.9 )
 frames = SubResource( 17 )
-frame = 3
+frame = 5
 speed_scale = 5.0
 playing = true
 
@@ -206,6 +207,9 @@ shape = SubResource( 19 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/throw = SubResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 21 )
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
