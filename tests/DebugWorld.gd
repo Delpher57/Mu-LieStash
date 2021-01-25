@@ -6,6 +6,7 @@ extends Node2D
 # var b = "text"
 
 
+# warning-ignore:unused_argument
 func _input(event):
 	if Input.is_action_just_pressed("FullScreen"):
 		 OS.window_fullscreen = !OS.window_fullscreen
