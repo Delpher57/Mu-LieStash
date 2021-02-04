@@ -54,6 +54,7 @@ func _ready():
 
 func shake_label():
 	anim_player.play("shake")
+	
 
 func print_hearts():
 	var stringH = ""
@@ -75,3 +76,10 @@ func set_inmortal_indicator(value):
 		inmortal_indicator.value = 1
 	else:
 		inmortal_indicator.value = 0
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if hearts > 9:
+		$NumSize.play("HPanimPlus10")
+	else:
+		$NumSize.play("HPanimBellow9")

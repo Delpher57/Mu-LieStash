@@ -766,7 +766,7 @@ position = Vector2( -444.112, 263.767 )
 position = Vector2( -448.551, 246.066 )
 
 [node name="ElectricSlimeSmall2" parent="YSort/Slimes" instance=ExtResource( 1 )]
-position = Vector2( -299.907, 288.983 )
+position = Vector2( -351.907, 301.983 )
 
 [node name="ElectricSlimeSmall3" parent="YSort/Slimes" instance=ExtResource( 1 )]
 position = Vector2( -414.811, 403.788 )
@@ -775,7 +775,7 @@ position = Vector2( -414.811, 403.788 )
 position = Vector2( -313.972, 140.975 )
 
 [node name="ElectricSlimeBig" parent="YSort/Slimes" instance=ExtResource( 6 )]
-position = Vector2( -843.667, 78.358 )
+position = Vector2( -1030.67, 137.358 )
 
 [node name="ElectricSlimeBig2" parent="YSort/Slimes" instance=ExtResource( 6 )]
 position = Vector2( -374.147, 232.708 )
@@ -785,24 +785,31 @@ position = Vector2( -550.272, 368.787 )
 
 [node name="GiantElectricSlime" parent="YSort/Slimes" instance=ExtResource( 7 )]
 position = Vector2( -786.864, 448.882 )
+XP_QUANTITY = 12
 
 [node name="ShooterEnemy" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -586.805, 162.235 )
+XP_QUANTITY = 5
 
 [node name="ShooterEnemy2" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -595.805, 258.235 )
+XP_QUANTITY = 5
 
 [node name="ShooterEnemy3" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -669.805, 128.236 )
+XP_QUANTITY = 5
 
 [node name="ShooterEnemy4" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -371.807, 277.234 )
+XP_QUANTITY = 5
 
 [node name="ShooterEnemy5" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -459.807, 173.235 )
+XP_QUANTITY = 5
 
 [node name="ShooterEnemy6" parent="YSort/Slimes" instance=ExtResource( 21 )]
-position = Vector2( -812.669, 175.969 )
+position = Vector2( -868.669, 424.967 )
+XP_QUANTITY = 5
 
 [node name="NPCs" type="YSort" parent="YSort"]
 
@@ -836,6 +843,7 @@ __meta__ = {
 }
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( -944.672, 67.5171 )
 limit_smoothed = true
 target = NodePath("../YSort/Players/Player")
@@ -855,6 +863,10 @@ bus = "Music"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.835294, 0.858824, 0.921569, 1 )
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2( -85.6188, 356.175 )
+zoom = Vector2( 10, 10 )
 [connection signal="pressed" from="HealthUI/Button" to="HealthUI/Button" method="_on_Button_pressed"]
 
 [editable path="Camera2D"]

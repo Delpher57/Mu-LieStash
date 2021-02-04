@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pickup_Coin_6.wav-6a14e01b950c4fd0c76021fe260affc4.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Effects/Orbs/Pickup_Coin_6.wav"
+dest_files=[ "res://.import/Pickup_Coin_6.wav-6a14e01b950c4fd0c76021fe260affc4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

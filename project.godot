@@ -151,6 +151,11 @@ FullScreen={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"unicode":0,"echo":false,"script":null)
  ]
 }
+debug={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -166,6 +171,7 @@ FullScreen={
 2d_physics/layer_10="softcolitions"
 2d_physics/layer_11="talkhitbox"
 2d_physics/layer_12="SpawnhurtBox"
+2d_physics/layer_19="xpOrbColition"
 2d_physics/layer_20="minigame colition"
 
 [rendering]

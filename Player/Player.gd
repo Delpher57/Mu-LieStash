@@ -161,6 +161,7 @@ func dash_state(_delta):
 	$particle_timer.start()
 	$dash_particles/sparks.emitting = true
 	$dash_particles/trail2.emitting = true
+	$dash_particles/linea.emitting = true
 	
 	animationState.travel("Run")
 	velocity = dash_vector * DASH_SPEED

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const DeathEffect = preload("res://Effects/explosion.tscn")
 export var Laser = preload("res://Enemies/lasers/Laser.tscn")
+const Experience = preload("res://tests/Experience.tscn")
 
 export var shoot_time_range_min = 1.0
 export var shoot_time_range_max = 5.0
@@ -19,6 +20,8 @@ export var ACCELERATION = 200
 export var FRICTION = 200
 export var MAX_SPEED = 50
 export var wanderDistance = 4
+export var rango_vision = 200
+export var XP_QUANTITY = 6
 
 var knockback = Vector2.ZERO
 export var knockback_friction = 500
@@ -78,14 +81,10 @@ func _physics_process(delta):
 					exclamation_played = true
 				accelerate_towards_point(player.global_position,delta)
 				
-				if global_position.distance_to(player.global_position) < 55:
-					var direction =(global_position.direction_to(player.global_position)*-1).normalized()
-					hitbox.knockback_vectorH = direction
+				if global_position.distance_to(player.global_position) < 75:
 					velocity = Vector2.ZERO
-					velocity = velocity.move_toward(direction * MAX_SPEED, 2000 * delta)
-					sprite.flip_h = velocity.x < 0
 			
-				elif global_position.distance_to(player.global_position) < 200:
+				if global_position.distance_to(player.global_position) < rango_vision:
 					if can_shoot == true:
 						shoot(player)
 				
@@ -132,6 +131,11 @@ func create_death_effect():
 	var deathEffect = DeathEffect.instance()
 	get_parent().add_child(deathEffect)
 	deathEffect.global_position = global_position
+	var experience = Experience.instance()
+	get_parent().add_child(experience)
+	experience.global_position = global_position
+	experience.xp_num = XP_QUANTITY
+	experience.throw_xp()
 
 func pick_random_state(state_list):
 	state_list.shuffle()

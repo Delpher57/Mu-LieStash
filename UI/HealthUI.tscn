@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
 [ext_resource path="res://UI/HeartUIEmpty.png" type="Texture" id=2]
@@ -58,6 +58,62 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 0.217638 ),
 "update": 0,
 "values": [ Color( 0.992157, 0.192157, 0.345098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "HPanimBellow9"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("hearths/Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 43.9899, -1.436 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("hearths/Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.714626, 0.714626 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "HPanimPlus10"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("hearths/Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.599254, 0.599254 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("hearths/Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 42.4821, -0.392173 ) ]
 }
 
 [node name="HealthUI" type="CanvasLayer"]
@@ -127,7 +183,7 @@ margin_bottom = 15.4917
 rect_scale = Vector2( 1.36686, 1.36686 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "8/8"
+text = "16/16"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -226,3 +282,8 @@ margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NumSize" type="AnimationPlayer" parent="."]
+anims/HPanimBellow9 = SubResource( 6 )
+anims/HPanimPlus10 = SubResource( 7 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

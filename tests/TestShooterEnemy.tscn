@@ -35,8 +35,8 @@ radius = 3.88785
 extents = Vector2( 10, 3.03686 )
 
 [node name="ShooterEnemy" instance=ExtResource( 2 )]
-shoot_time_range_min = 0.5
-shoot_time_range_max = 1.0
+shoot_time_range_min = 1.0
+shoot_time_range_max = 1.5
 ACCELERATION = 500
 knockback_speed = 75
 shakeamount = 0.25
@@ -85,7 +85,7 @@ shape = SubResource( 8 )
 visible = false
 
 [node name="ShootTimer" parent="." index="16"]
-wait_time = 5.0
+wait_time = 7.0
 
 [editable path="Hurtbox"]
 

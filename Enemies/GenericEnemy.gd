@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const DeathEffect = preload("res://Effects/explosion.tscn")
+const Experience = preload("res://tests/Experience.tscn")
 enum {
 	IDLE,
 	WANDER,
@@ -13,6 +14,7 @@ export var ACCELERATION = 200
 export var FRICTION = 200
 export var MAX_SPEED = 50
 export var wanderDistance = 4
+export var XP_QUANTITY = 5
 
 var knockback = Vector2.ZERO
 export var knockback_friction = 500
@@ -93,6 +95,11 @@ func create_death_effect():
 	var deathEffect = DeathEffect.instance()
 	get_parent().add_child(deathEffect)
 	deathEffect.global_position = global_position
+	var experience = Experience.instance()
+	get_parent().add_child(experience)
+	experience.global_position = global_position
+	experience.xp_num = XP_QUANTITY
+	experience.throw_xp()
 
 func pick_random_state(state_list):
 	state_list.shuffle()
