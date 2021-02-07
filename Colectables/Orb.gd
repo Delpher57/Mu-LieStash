@@ -17,7 +17,8 @@ func _ready():
 	pass
 
 
-func _on_Orb_body_entered(body):
+func _on_Orb_body_entered(_body):
+	PlayerStats.increase_xp()
 	$orbAnim.play("hide")
 	$AudioStreamPlayer2D.play()
 

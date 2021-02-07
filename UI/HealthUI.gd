@@ -3,33 +3,38 @@ extends CanvasLayer
 var hearts = 4 setget set_hearths
 var max_hearts = 4 setget set_max_hearts
 
+var xp = 0 setget set_xp
+var max_xp = 50 setget set_max_xp
 
-onready var Hearhui_full = $hearths/HearthUI_full
-onready var Hearhui_empty = $hearths/HearthUI_empty
-onready var bar = $hearths/TextureProgress
-onready var health_label = $hearths/Node2D
-onready var health_label_text = $hearths/Node2D/HEARTS
+
+onready var Hearhui_full = $UI/hearths/HearthUI_full
+onready var Hearhui_empty = $UI/hearths/HearthUI_empty
+onready var bar = $UI/hearths/TextureProgress
+onready var health_label = $UI/hearths/Node2D
+onready var health_label_text = $UI/hearths/Node2D/HEARTS
 onready var anim_player = $AnimationPlayer
-onready var stamina_circle = $stamina/staminaCircle
-onready var stamina_tween = $stamina/Tween
-onready var sword_indicator = $Indicadores/Espada
-onready var inmortal_indicator = $Indicadores/Inmortal
+onready var stamina_circle = $UI/stamina/staminaCircle
+onready var stamina_tween = $UI/stamina/Tween
+onready var sword_indicator = $UI/Indicadores/Espada
+onready var inmortal_indicator = $UI/Indicadores/Inmortal
+onready var xpBar = $UI/Indicadores/Xp/TextureProgress
+onready var level_up_song = $LevelUPSound
 
 func set_hearths(value):
 	hearts = clamp(value, 0, max_hearts)
-	print_hearts()
 	bar.value = hearts
+	set_heart_label_size()
+	print_hearts()
 
-	if Hearhui_full != null:
-		Hearhui_full.rect_size.x = hearts * 18
 
 func set_max_hearts(value):
 	max_hearts = max(value,1)
-	print_hearts()
 	bar.max_value = max_hearts
-	self.hearts = min(hearts,max_hearts)
-	if Hearhui_empty != null:
-		Hearhui_empty.rect_size.x = max_hearts * 18
+	self.hearts = max_hearts
+	set_heart_label_size()
+	print_hearts()
+
+	
 
 func start_stamina(value):
 	stamina_circle.value = 0
@@ -38,13 +43,33 @@ func start_stamina(value):
 	stamina_tween.start()
 
 
+func set_xp(value):
+	xpBar.value = value
+	pass
+
+func set_max_xp(value):
+	if xpBar.value != 0:
+		level_up_song.play()
+		anim_player.play("green")
+	xpBar.max_value = value
+	xpBar.value = 0
+	
+	pass
+
 func _ready():
 	self.max_hearts = PlayerStats.max_health
 	self.hearts = PlayerStats.health
+	
+	self.xp = PlayerStats.xp
+	self.max_xp = PlayerStats.max_XP
 # warning-ignore:return_value_discarded
 	PlayerStats.connect("health_changed",self,"set_hearths")
 # warning-ignore:return_value_discarded
 	PlayerStats.connect("max_health_changed",self,"set_max_hearts")
+# warning-ignore:return_value_discarded
+	PlayerStats.connect("xp_changed",self,"set_xp")
+# warning-ignore:return_value_discarded
+	PlayerStats.connect("max_xp_changed",self,"set_max_xp")
 # warning-ignore:return_value_discarded
 	PlayerStats.connect("usingDash",self,"start_stamina")
 # warning-ignore:return_value_discarded
@@ -53,7 +78,14 @@ func _ready():
 	PlayerStats.connect("inmortal",self,"set_inmortal_indicator")
 
 func shake_label():
+	var shake = 5
 	anim_player.play("shake")
+	for i in 15:
+		shake = shake - 0.33
+		health_label_text.rect_pivot_offset.x = rand_range(-shake,shake)
+		health_label_text.rect_pivot_offset.y = rand_range(-shake,shake)
+		yield(get_tree().create_timer(.01), "timeout")
+	health_label_text.rect_pivot_offset = Vector2(0,0)
 	
 
 func print_hearts():
@@ -78,8 +110,14 @@ func set_inmortal_indicator(value):
 		inmortal_indicator.value = 0
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
+	set_heart_label_size()
+
+
+func set_heart_label_size():
 	if hearts > 9:
 		$NumSize.play("HPanimPlus10")
+		print("plus")
 	else:
 		$NumSize.play("HPanimBellow9")
+		print("below")

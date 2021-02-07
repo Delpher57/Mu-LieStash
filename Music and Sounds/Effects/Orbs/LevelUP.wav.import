@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LevelUP.wav-5bb506dab7cc44648539e3e74c6e0038.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Effects/Orbs/LevelUP.wav"
+dest_files=[ "res://.import/LevelUP.wav-5bb506dab7cc44648539e3e74c6e0038.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

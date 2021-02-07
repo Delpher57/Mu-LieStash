@@ -745,7 +745,7 @@ position = Vector2( -939.315, 82.9756 )
 position = Vector2( 45.2629, 110.526 )
 
 [node name="Player" parent="YSort/Players" instance=ExtResource( 2 )]
-position = Vector2( -989.935, -43.0087 )
+position = Vector2( -948.2, -43.0087 )
 FRICTION = 400
 knockback_friction = 200
 spawn_position = Vector2( -989.935, -43.009 )
