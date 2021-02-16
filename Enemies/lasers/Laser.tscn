@@ -202,7 +202,6 @@ tracks/6/keys = {
 [node name="KinematicBody2D" type="KinematicBody2D"]
 z_index = 1
 script = ExtResource( 3 )
-MAX_SPEED = 120
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 scale = Vector2( 0.603542, 0.603542 )

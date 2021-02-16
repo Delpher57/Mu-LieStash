@@ -9,7 +9,7 @@
 [ext_resource path="res://Enemies/GiantElectricSlime.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://General/Camera2D.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Music and Sounds/Music/Tears Demo 1.wav" type="AudioStream" id=10]
+[ext_resource path="res://Music and Sounds/Music/rave.wav" type="AudioStream" id=10]
 [ext_resource path="res://World/DirtPath.png" type="Texture" id=11]
 [ext_resource path="res://tests/npcpruebadialogo.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Decoracion/ArcadeBlastiny.tscn" type="PackedScene" id=13]
@@ -745,7 +745,7 @@ position = Vector2( -939.315, 82.9756 )
 position = Vector2( 45.2629, 110.526 )
 
 [node name="Player" parent="YSort/Players" instance=ExtResource( 2 )]
-position = Vector2( -948.2, -43.0087 )
+position = Vector2( -985.17, -42.1284 )
 FRICTION = 400
 knockback_friction = 200
 spawn_position = Vector2( -989.935, -43.009 )
@@ -758,9 +758,6 @@ position = Vector2( -25.2191, 16.1989 )
 
 [node name="Minotauro" parent="YSort/Slimes" instance=ExtResource( 18 )]
 position = Vector2( -571.026, 182.018 )
-
-[node name="Minotauro2" parent="YSort/Slimes" instance=ExtResource( 18 )]
-position = Vector2( -444.112, 263.767 )
 
 [node name="ElectricSlimeSmall" parent="YSort/Slimes" instance=ExtResource( 1 )]
 position = Vector2( -448.551, 246.066 )
@@ -787,29 +784,33 @@ position = Vector2( -550.272, 368.787 )
 position = Vector2( -786.864, 448.882 )
 XP_QUANTITY = 12
 
-[node name="ShooterEnemy" parent="YSort/Slimes" instance=ExtResource( 21 )]
-position = Vector2( -586.805, 162.235 )
-XP_QUANTITY = 5
-
 [node name="ShooterEnemy2" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -595.805, 258.235 )
-XP_QUANTITY = 5
+collision_layer = 256
+collision_mask = 385
+shoot_time_range_max = 5.0
+MAX_SPEED = 50
 
 [node name="ShooterEnemy3" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -669.805, 128.236 )
-XP_QUANTITY = 5
+collision_layer = 256
+collision_mask = 385
+shoot_time_range_max = 5.0
+MAX_SPEED = 50
 
 [node name="ShooterEnemy4" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -371.807, 277.234 )
-XP_QUANTITY = 5
-
-[node name="ShooterEnemy5" parent="YSort/Slimes" instance=ExtResource( 21 )]
-position = Vector2( -459.807, 173.235 )
-XP_QUANTITY = 5
+collision_layer = 256
+collision_mask = 385
+shoot_time_range_max = 5.0
+MAX_SPEED = 50
 
 [node name="ShooterEnemy6" parent="YSort/Slimes" instance=ExtResource( 21 )]
 position = Vector2( -868.669, 424.967 )
-XP_QUANTITY = 5
+collision_layer = 256
+collision_mask = 385
+shoot_time_range_max = 5.0
+MAX_SPEED = 50
 
 [node name="NPCs" type="YSort" parent="YSort"]
 
@@ -845,6 +846,8 @@ __meta__ = {
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
 visible = false
 position = Vector2( -944.672, 67.5171 )
+offset = Vector2( 0.9, 0.9 )
+zoom = Vector2( 0.9, 0.9 )
 limit_smoothed = true
 target = NodePath("../YSort/Players/Player")
 

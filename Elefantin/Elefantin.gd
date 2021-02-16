@@ -51,6 +51,7 @@ func _physics_process(delta):
 			else:
 				animationState.travel("RUN")
 			seek_player()
+			#nos teletransportamos si muy lejos
 			if global_position.distance_to(jugador.global_position) > 150:
 				global_position = jugador.global_position
 			else:
@@ -71,7 +72,7 @@ func _physics_process(delta):
 			else:
 				state = FOLLOW
 	if softcolition.is_colliding():
-		velocity += softcolition.get_push_vector() * delta * 800
+		velocity += softcolition.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
 
 	

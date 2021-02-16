@@ -34,6 +34,11 @@ tracks/1/keys = {
 
 [node name="ShooterEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+shoot_time_range_min = 5.0
+MAX_SPEED = 20
+XP_QUANTITY = 5
+knockback_friction = 200
+knockback_speed = 300
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( 0.225983, 1.60699 )

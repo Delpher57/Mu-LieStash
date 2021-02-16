@@ -4,7 +4,7 @@ const DeathEffect = preload("res://Effects/explosion.tscn")
 export var Laser = preload("res://Enemies/lasers/Laser.tscn")
 const Experience = preload("res://tests/Experience.tscn")
 
-export var shoot_time_range_min = 1.0
+export var shoot_time_range_min = 3.0
 export var shoot_time_range_max = 5.0
 
 enum {
@@ -47,9 +47,9 @@ export var shakeamount = .2
 var can_shoot = true
 
 func _physics_process(delta):
+	
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 	knockback = move_and_slide(knockback)
-	
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -82,7 +82,8 @@ func _physics_process(delta):
 				accelerate_towards_point(player.global_position,delta)
 				
 				if global_position.distance_to(player.global_position) < 75:
-					velocity = Vector2.ZERO
+					#velocity = Vector2.ZERO
+					pass
 			
 				if global_position.distance_to(player.global_position) < rango_vision:
 					if can_shoot == true:
@@ -101,6 +102,8 @@ func _physics_process(delta):
 	if softcolition.is_colliding():
 		velocity += softcolition.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
+	
+	
 
 func accelerate_towards_point(pos,delta):
 	var direction =global_position.direction_to(pos)
