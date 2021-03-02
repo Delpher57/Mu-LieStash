@@ -104,7 +104,7 @@ func move_state(delta):
 			
 			if Input.is_action_just_pressed("dash"):
 				if can_dash == true:
-					Effects.reproducirEfect("Evade",2)
+					$DashAudio.play()
 					state = DASH
 		else:
 			trail.emitting = false
@@ -121,7 +121,7 @@ func move_state(delta):
 		
 		if Input.is_action_just_pressed("boomerang"):
 			if has_sword == true:
-				Effects.reproducirEfect("BoomerangTrow",3)
+				Effects.reproducirEfect("Dash2",3)
 				state = BOOMERANG
 
 func atack_state(_delta):
