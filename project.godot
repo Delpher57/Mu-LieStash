@@ -17,6 +17,8 @@ _global_script_class_icons={
 
 config/name="Mu-Liestash"
 run/main_scene="res://DebugWorld.tscn"
+boot_splash/image="res://Shadows/mini shadow.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://temp_icon.jpg"
 
 [autoload]
@@ -155,6 +157,10 @@ debug={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]
+}
+nada={
+"deadzone": 0.5,
+"events": [  ]
 }
 
 [input_devices]

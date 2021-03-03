@@ -12,69 +12,69 @@
 offsets = PoolRealArray( 0, 0.496644, 1 )
 colors = PoolColorArray( 0.998047, 0, 1, 1, 0.0371094, 0, 1, 0.921569, 1, 1, 1, 0 )
 
-[sub_resource type="Gradient" id=17]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.691275, 0.980132, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.635294, 17.1647, 17.1647, 17.1647, 0, 1, 1, 1, 0.53 )
 
-[sub_resource type="Curve" id=22]
+[sub_resource type="Curve" id=3]
 max_value = 5.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.994505, 1.08523 ), 1.4, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.00662252, 0.154362, 0.167785, 0.348993, 0.38255, 0.536913, 0.563758, 0.812081, 0.825503, 1 )
 colors = PoolColorArray( 1, 0.870117, 0, 0, 0.170592, 0.977843, 0.813145, 0.149619, 0.0935103, 0.971487, 0.906852, 0.206001, 0.0588235, 0.968627, 0.94902, 0.231373, 0.0365569, 0.398218, 0.994452, 0.492532, 0.0509804, 0.160784, 1, 0.615686, 0.903434, 0.0294118, 0.915965, 0.58343, 1, 0.0392157, 0.945098, 1, 0.992157, 0.819608, 0.109804, 0.741176, 0.989258, 1, 0, 1 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 24, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 72, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 24, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
 region = Rect2( 48, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
 region = Rect2( 72, 24, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 48, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 1 )
 region = Rect2( 24, 48, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
 region = Rect2( 48, 48, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 1 )
 region = Rect2( 72, 48, 24, 24 )
 
-[sub_resource type="SpriteFrames" id=16]
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -167,11 +167,11 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 15.0
 scale_amount = 3.0
 scale_amount_random = 1.0
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
-width_curve = SubResource( 22 )
-gradient = SubResource( 3 )
+width_curve = SubResource( 3 )
+gradient = SubResource( 4 )
 script = ExtResource( 4 )
 targetPath = NodePath("..")
 trailLength = 20
@@ -185,8 +185,8 @@ texture = ExtResource( 3 )
 modulate = Color( 0, 100, 100, 1 )
 position = Vector2( 0.28281, -0.113123 )
 scale = Vector2( 0.9, 0.9 )
-frames = SubResource( 16 )
-frame = 9
+frames = SubResource( 17 )
+frame = 8
 speed_scale = 5.0
 playing = true
 

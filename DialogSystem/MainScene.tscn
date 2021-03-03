@@ -7,14 +7,5 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueUI" parent="." instance=ExtResource( 1 )]
-margin_top = 392.0
-margin_right = 890.0
-margin_bottom = 588.0
-
-[node name="DialogueName" parent="DialogueUI" index="2"]
-margin_left = 906.0
-margin_top = 19.0
-margin_right = 779.0
-margin_bottom = -146.0
 
 [editable path="DialogueUI"]

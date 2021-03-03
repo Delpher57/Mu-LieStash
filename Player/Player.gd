@@ -121,7 +121,7 @@ func move_state(delta):
 		
 		if Input.is_action_just_pressed("boomerang"):
 			if has_sword == true:
-				Effects.reproducirEfect("Dash2",3)
+				$BoomerangThrowSound.play()
 				state = BOOMERANG
 
 func atack_state(_delta):

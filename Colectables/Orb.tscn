@@ -9,7 +9,7 @@
 [ext_resource path="res://Shadows/mini-mini shadow.png" type="Texture" id=7]
 [ext_resource path="res://Colectables/OrbShadow.gd" type="Script" id=8]
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -17,7 +17,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=2]
 resource_name = "flote"
 length = 1.5
 loop = true
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -0.436454 ), Vector2( 0, -0.145485 ), Vector2( 0, -1.30936 ), Vector2( 0, -1.11538 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=3]
 resource_name = "hide"
 length = 0.1
 tracks/0/type = "value"
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 resource_name = "pulse"
 length = 0.6
 loop = true
@@ -67,13 +67,13 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.9, 0.9 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=5]
 radius = 9.67037
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=6]
 radius = 37.1371
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=7]
 radius = 2.27688
 
 [node name="Orb" type="KinematicBody2D"]
@@ -96,18 +96,18 @@ script = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Orb"]
 position = Vector2( 0, -1.30936 )
-frames = SubResource( 9 )
+frames = SubResource( 1 )
 playing = true
 
 [node name="orbAnim" type="AnimationPlayer" parent="Orb"]
 autoplay = "flote"
-anims/flote = SubResource( 15 )
-anims/hide = SubResource( 12 )
-anims/pulse = SubResource( 10 )
+anims/flote = SubResource( 2 )
+anims/hide = SubResource( 3 )
+anims/pulse = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Orb"]
 position = Vector2( 0.531926, -0.595752 )
-shape = SubResource( 11 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Orb"]
@@ -117,7 +117,7 @@ stream = ExtResource( 3 )
 visible = false
 
 [node name="CollisionShape2D" parent="Orb/PlayerDetectionZone" index="0"]
-shape = SubResource( 13 )
+shape = SubResource( 6 )
 
 [node name="softColition" parent="." instance=ExtResource( 6 )]
 visible = false
@@ -126,7 +126,7 @@ collision_mask = 262144
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
 position = Vector2( 0.546934, -1.76949 )
-shape = SubResource( 14 )
+shape = SubResource( 7 )
 [connection signal="body_entered" from="Orb" to="Orb" method="_on_Orb_body_entered"]
 [connection signal="finished" from="Orb/AudioStreamPlayer2D" to="Orb" method="_on_AudioStreamPlayer2D_finished"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://UI/BotonesTouch/0.png" type="Texture" id=1]
 [ext_resource path="res://UI/BotonesTouch/1.png" type="Texture" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://UI/BotonesTouch/joystick1.png" type="Texture" id=9]
 [ext_resource path="res://UI/BotonesTouch/joystickRange.png" type="Texture" id=10]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 17.0
+
 [sub_resource type="CircleShape2D" id=2]
 radius = 17.0
 
@@ -18,10 +21,9 @@ radius = 17.0
 radius = 17.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 17.0
-
-[sub_resource type="CircleShape2D" id=1]
 radius = 8.0
+
+[sub_resource type="CircleShape2D" id=5]
 
 [node name="touchControls" type="CanvasLayer"]
 
@@ -33,21 +35,21 @@ z_index = 50
 position = Vector2( 240.657, 142.691 )
 normal = ExtResource( 4 )
 pressed = ExtResource( 5 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 action = "attack"
 
 [node name="boomerang" type="TouchScreenButton" parent="buttons"]
 position = Vector2( 277.507, 106.092 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 6 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 action = "boomerang"
 
 [node name="Dash" type="TouchScreenButton" parent="buttons"]
 position = Vector2( 277.507, 142.691 )
 normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 action = "dash"
 
 [node name="joystick" type="Sprite" parent="buttons"]
@@ -58,5 +60,11 @@ texture = ExtResource( 10 )
 [node name="joystickButton" type="TouchScreenButton" parent="buttons/joystick"]
 normal = ExtResource( 9 )
 pressed = ExtResource( 8 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 script = ExtResource( 7 )
+
+[node name="acceot" type="TouchScreenButton" parent="buttons"]
+position = Vector2( 239.83, 141.344 )
+scale = Vector2( 1.67557, 1.68425 )
+shape = SubResource( 5 )
+action = "ui_accept"
