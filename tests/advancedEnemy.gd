@@ -18,6 +18,7 @@ export var FRICTION = 200
 export var MAX_SPEED = 50
 export var wanderDistance = 4
 export var XP_QUANTITY = 10
+export var atack_waiter = 5
 
 var knockback = Vector2.ZERO
 export var knockback_friction = 500
@@ -153,7 +154,7 @@ func atack():
 	#animationState.travel("IDLE")
 	if can_atack == true:
 		can_atack = false
-		$Timer.start(2.5)
+		$Timer.start(atack_waiter)
 		state = ATTACK
 		velocity = Vector2.ZERO
 		var next_atack = atacks[rand_range(0,atacks.size())]

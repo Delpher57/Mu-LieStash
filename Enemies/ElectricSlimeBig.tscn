@@ -247,11 +247,11 @@ height = 9.33324
 radius = 73.6971
 
 [sub_resource type="CircleShape2D" id=61]
-radius = 7.47605
+radius = 7.97643
 
 [sub_resource type="CapsuleShape2D" id=62]
-radius = 4.40497
-height = 17.6401
+radius = 4.10668
+height = 14.2592
 
 [node name="ElectricSlimeBig" instance=ExtResource( 3 )]
 MAX_SPEED = 30
@@ -264,7 +264,7 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 57 )
-frame = 22
+frame = 9
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -288,10 +288,11 @@ position = Vector2( -0.298321, 2.18769 )
 shape = SubResource( 60 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -0.033081, 3.5791 )
 shape = SubResource( 61 )
 
 [node name="softColition" parent="." index="7"]
-position = Vector2( 0, 0.59664 )
+position = Vector2( 0.298321, 0.696081 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
 position = Vector2( -0.115139, 6.72302 )
@@ -299,9 +300,8 @@ rotation = -1.5708
 shape = SubResource( 62 )
 
 [node name="VisibilityEnabler2D" parent="." index="9"]
-visible = false
-position = Vector2( 0.64636, 1.69048 )
-scale = Vector2( 2.32753, 1.81541 )
+position = Vector2( -0.19888, 2.53572 )
+scale = Vector2( 1.36793, 0.995029 )
 
 [node name="Exclamation" parent="." index="13"]
 position = Vector2( 0, 0.59664 )

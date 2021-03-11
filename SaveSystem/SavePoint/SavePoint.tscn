@@ -64,7 +64,6 @@ stream = ExtResource( 4 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( -0.968552, -7.55468 )
-amount = 16
 lifetime = 0.5
 emission_shape = 1
 emission_sphere_radius = 10.74

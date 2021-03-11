@@ -895,6 +895,12 @@ volume_db = 10.0
 
 [node name="hit_anim" type="AnimationPlayer" parent="."]
 anims/hit = SubResource( 43 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 1.63125, -1.32538 )
+scale = Vector2( 1.61172, 2.05011 )
+process_parent = true
+physics_process_parent = true
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

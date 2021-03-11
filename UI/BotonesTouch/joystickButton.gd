@@ -8,6 +8,8 @@ var ongoing_drag = -1
 
 var return_accel = 20
 
+func _ready():
+	position = (Vector2(0,0) - radius)
 
 func _process(delta):
 

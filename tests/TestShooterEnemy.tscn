@@ -1,38 +1,32 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://tests/testNPC.png" type="Texture" id=1]
+[ext_resource path="res://tests/testEnemy2.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/ShooterEnemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=3]
+[ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=3]
+[ext_resource path="res://tests/testEnemy1.png" type="Texture" id=4]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 24, 24 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 24, 0, 24, 24 )
-
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "default",
 "speed": 4.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1.94463, 6.2896 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.94463, 7.38653 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 8.20494 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=4]
 radius = 131.975
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=5]
 radius = 3.88785
 
-[sub_resource type="CircleShape2D" id=8]
-radius = 8.59816
+[sub_resource type="CircleShape2D" id=6]
+radius = 6.38425
 
 [node name="ShooterEnemy" instance=ExtResource( 2 )]
 shoot_time_range_min = 3.0
@@ -43,22 +37,29 @@ knockback_speed = 102
 shakeamount = 0.25
 
 [node name="sombra" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0.745098 )
+position = Vector2( 0.30356, 11.6032 )
 texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( 0, 0 )
 scale = Vector2( 1, 1 )
-frames = SubResource( 3 )
+frames = SubResource( 1 )
+frame = 1
+speed_scale = 1.0
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource( 4 )
+visible = false
+position = Vector2( 0.488846, 10.033 )
+shape = SubResource( 2 )
 
 [node name="Hurtbox" parent="." index="3"]
 visible = false
+position = Vector2( 0.732716, 0.314022 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -0.0394478, 0.809932 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Stats" parent="." index="4"]
 max_health = 5
@@ -67,14 +68,24 @@ max_health = 5
 visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
+
+[node name="Hitbox" parent="." index="6"]
+position = Vector2( 2.07751, 3.30863 )
+collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 7 )
+shape = SubResource( 5 )
+
+[node name="softColition" parent="." index="7"]
+visible = false
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
-position = Vector2( 0.134701, 4.79052 )
-shape = SubResource( 8 )
+position = Vector2( 1.60014, 5.41856 )
+shape = SubResource( 6 )
+
+[node name="VisibilityEnabler2D" parent="." index="9"]
+visible = false
 
 [node name="ShootTimer" parent="." index="16"]
 wait_time = 7.0

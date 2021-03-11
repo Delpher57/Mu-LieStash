@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Effects/RedDamage.png" type="Texture" id=1]
 [ext_resource path="res://MinijuegosArcade/Blastiny/naveBlastiny.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://MinijuegosArcade/Blastiny/alienBlastiny.png" type="Texture" id=4]
 [ext_resource path="res://MinijuegosArcade/Blastiny/Alien.gd" type="Script" id=5]
 [ext_resource path="res://MinijuegosArcade/Blastiny/Blastiny.gd" type="Script" id=6]
-[ext_resource path="res://Effects/CRTEffect.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MinijuegosArcade/Blastiny/arcadeoverlayTest.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -187,24 +186,9 @@ autoplay = "fadeIn"
 anims/fadeIn = SubResource( 4 )
 anims/fadeOut = SubResource( 5 )
 
-[node name="CRTEffect" parent="Blastiny" instance=ExtResource( 7 )]
-position = Vector2( -22.7149, -8.77245 )
-scale = Vector2( 0.118817, 0.212563 )
-z_index = 3
-
-[node name="TextureRect" parent="Blastiny/CRTEffect" index="0"]
-margin_left = 108.0
-margin_top = 20.0
-margin_right = 537.0
-margin_bottom = 213.0
-
-[node name="Sprite" parent="Blastiny/CRTEffect" index="1"]
-position = Vector2( 319.656, 115.913 )
-scale = Vector2( 0.357165, 0.211507 )
-
-[node name="Sprite2" type="Sprite" parent="Blastiny/CRTEffect"]
-position = Vector2( -70.1783, 3.43061 )
-scale = Vector2( 2.35846, 1.31832 )
+[node name="Sprite2" type="Sprite" parent="Blastiny"]
+position = Vector2( -31.0533, -8.04323 )
+scale = Vector2( 0.280225, 0.280226 )
 texture = ExtResource( 8 )
 centered = false
 [connection signal="timeout" from="Blastiny/Nave/Timer" to="Blastiny/Nave" method="_on_Timer_timeout"]
@@ -212,5 +196,3 @@ centered = false
 [connection signal="body_entered" from="Blastiny/Alien2/Area2D" to="Blastiny/Alien2" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Blastiny/Alien3/Area2D" to="Blastiny/Alien3" method="_on_Area2D_body_entered"]
 [connection signal="animation_finished" from="Blastiny/AnimationPlayer" to="Blastiny" method="_on_AnimationPlayer_animation_finished"]
-
-[editable path="Blastiny/CRTEffect"]

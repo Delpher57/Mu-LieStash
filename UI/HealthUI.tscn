@@ -20,10 +20,10 @@
 [ext_resource path="res://UI/xpBar.png/1.png" type="Texture" id=18]
 [ext_resource path="res://Music and Sounds/Effects/Orbs/LevelUP.wav" type="AudioStream" id=19]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "fadeout"
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=2]
 resource_name = "green"
 length = 0.55
 step = 0.025
@@ -64,7 +64,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.95, 0.95 ), Vector2( 1.1, 1.1 ), Vector2( 0.95, 0.95 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.55
 step = 0.025
 tracks/0/type = "value"
@@ -80,7 +80,7 @@ tracks/0/keys = {
 "values": [ Color( 0.992157, 0.192157, 0.345098, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "HPanimBellow9"
 length = 0.1
 tracks/0/type = "value"
@@ -108,7 +108,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.714626, 0.714626 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "HPanimPlus10"
 length = 0.1
 tracks/0/type = "value"
@@ -136,21 +136,21 @@ tracks/1/keys = {
 "values": [ Vector2( 0.648366, 0.727279 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=6]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://DialogSystem/Fonts/m6x11.ttf"
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=8]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 8 )
+font_data = SubResource( 7 )
 
-[sub_resource type="Theme" id=3]
-default_font = SubResource( 9 )
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
 
 [sub_resource type="DynamicFontData" id=10]
 antialiased = false
@@ -173,13 +173,13 @@ scale = Vector2( 0.296057, 0.221903 )
 texture = ExtResource( 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fadeout = SubResource( 4 )
-anims/green = SubResource( 13 )
-anims/shake = SubResource( 5 )
+anims/fadeout = SubResource( 1 )
+anims/green = SubResource( 2 )
+anims/shake = SubResource( 3 )
 
 [node name="NumSize" type="AnimationPlayer" parent="."]
-anims/HPanimBellow9 = SubResource( 6 )
-anims/HPanimPlus10 = SubResource( 7 )
+anims/HPanimBellow9 = SubResource( 4 )
+anims/HPanimPlus10 = SubResource( 5 )
 
 [node name="UI" type="Node2D" parent="."]
 position = Vector2( 0, 2.15906 )
@@ -242,7 +242,7 @@ margin_top = 1.49171
 margin_right = 1.30862
 margin_bottom = 15.4917
 rect_scale = Vector2( 1.36686, 1.36686 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "10/10"
 align = 1
@@ -255,7 +255,7 @@ margin_left = 5.9219
 margin_top = 3.2648
 margin_right = 45.9219
 margin_bottom = 17.2648
-theme = SubResource( 3 )
+theme = SubResource( 9 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "HP"
 __meta__ = {
@@ -290,7 +290,7 @@ margin_left = 3.38907
 margin_top = 7.73885
 margin_right = 43.3891
 margin_bottom = 21.7388
-theme = SubResource( 3 )
+theme = SubResource( 9 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "ST"
 __meta__ = {

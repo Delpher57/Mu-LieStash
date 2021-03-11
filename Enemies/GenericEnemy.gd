@@ -5,7 +5,8 @@ const Experience = preload("res://tests/Experience.tscn")
 enum {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	AVOID
 }
 var state = WANDER
 
@@ -69,7 +70,22 @@ func _physics_process(delta):
 				if exclamation_played == false:
 					exclamationAnim.play("exclamation")
 					exclamation_played = true
+				change_fight_behavior()
 				accelerate_towards_point(player.global_position,delta)
+			else:
+				state = IDLE
+				exclamation_played = false
+		
+		AVOID:
+			var player = playerdetectionzone.player
+			if player != null:
+				if exclamation_played == false:
+					exclamationAnim.play("exclamation")
+					exclamation_played = true
+				change_fight_behavior()
+				accelerate_against_point(player.global_position,delta)
+				if velocity.x == 0 or velocity.y == 0:
+					state = CHASE
 			else:
 				state = IDLE
 				exclamation_played = false
@@ -84,7 +100,13 @@ func accelerate_towards_point(pos,delta):
 	hitbox.knockback_vectorH = direction
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x < 0
-	
+
+func accelerate_against_point(pos,delta):
+	var direction =global_position.direction_to(pos) * -1
+	hitbox.knockback_vectorH = direction
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x < 0
+
 
 func seek_player():
 	if playerdetectionzone.can_see_player():
@@ -128,3 +150,11 @@ func _on_Stats_no_health():
 func _on_DieAnim_animation_finished(anim_name):
 	if (anim_name == "Die"):
 		queue_free()
+
+#cambiamos entre rer o atacar en una batalla
+func change_fight_behavior():
+	
+	if $AttackorRunTimer.get_time_left() == 0:
+		state = pick_random_state([CHASE,AVOID])
+		$AttackorRunTimer.start(rand_range(3,7))
+		

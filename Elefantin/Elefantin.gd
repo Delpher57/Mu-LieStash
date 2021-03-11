@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const DeathEffect = preload("res://Effects/EnemyDeath.tscn")
+
 enum {
 	IDLE,
 	FOLLOW,
@@ -91,10 +91,6 @@ func seek_player():
 		state = ATACK
 
 
-func create_death_effect():
-	var deathEffect = DeathEffect.instance()
-	get_parent().add_child(deathEffect)
-	deathEffect.global_position = global_position
 
 func atack_anim_ended():
 	state = FOLLOW 

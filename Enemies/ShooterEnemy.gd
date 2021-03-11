@@ -11,7 +11,8 @@ enum {
 	IDLE,
 	WANDER,
 	CHASE,
-	SHOOT
+	SHOOT,
+	AVOID
 }
 var state = WANDER
 
@@ -81,22 +82,34 @@ func _physics_process(delta):
 					exclamation_played = true
 				accelerate_towards_point(player.global_position,delta)
 				
-				if global_position.distance_to(player.global_position) < 75:
-					#velocity = Vector2.ZERO
-					pass
-			
+				if global_position.distance_to(player.global_position) < rango_vision/3:
+					state = pick_random_state([CHASE,AVOID])
+				
 				if global_position.distance_to(player.global_position) < rango_vision:
 					if can_shoot == true:
 						shoot(player)
-				
-
-				
 			else:
 				state = IDLE
 				exclamation_played = false
 		
+		AVOID:
+			var player = playerdetectionzone.player
+			if player != null:
+				if exclamation_played == false:
+					exclamationAnim.play("exclamation")
+					exclamation_played = true
+				accelerate_against_point(player.global_position,delta)
+				
+				if global_position.distance_to(player.global_position) > rango_vision/2:
+					state = CHASE
+				
+				if global_position.distance_to(player.global_position) < rango_vision:
+					if can_shoot == true:
+						shoot(player)
+			else:
+				state = IDLE
+				exclamation_played = false
 
-			
 
 	
 	if softcolition.is_colliding():
@@ -110,7 +123,13 @@ func accelerate_towards_point(pos,delta):
 	hitbox.knockback_vectorH = direction
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x < 0
-	
+
+func accelerate_against_point(pos,delta):
+	var direction =global_position.direction_to(pos) * -1
+	hitbox.knockback_vectorH = direction
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x < 0
+
 
 func seek_player():
 	if playerdetectionzone.can_see_player():
@@ -171,3 +190,11 @@ func _on_DieAnim_animation_finished(anim_name):
 
 func _on_ShootTimer_timeout():
 	can_shoot = true
+
+
+#cambiamos entre rer o atacar en una batalla
+func change_fight_behavior():
+
+	if $AttackorRunTimer.get_time_left() == 0:
+		state = pick_random_state([CHASE,AVOID])
+		$AttackorRunTimer.start(rand_range(3,7))

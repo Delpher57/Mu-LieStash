@@ -90,7 +90,7 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 13 )
-frame = 4
+frame = 6
 speed_scale = 1.0
 
 [node name="CollisionShape2D" parent="." index="2"]
@@ -126,9 +126,8 @@ shape = SubResource( 18 )
 wanderRange = 50
 
 [node name="VisibilityEnabler2D" parent="." index="9"]
-visible = false
-position = Vector2( 0.0968506, 2.71196 )
-scale = Vector2( 1.70705, 1.54239 )
+position = Vector2( -0.0519977, 3.84319 )
+scale = Vector2( 1.10274, 0.875561 )
 
 [node name="Exclamation" parent="." index="13"]
 position = Vector2( 0, 0.238155 )
