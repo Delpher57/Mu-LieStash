@@ -23,6 +23,7 @@ var direccion_vision = Vector2.RIGHT
 
 
 var can_dash = true
+var is_atacking = false
 var is_talking = false
 var has_sword = true
 
@@ -115,8 +116,7 @@ func move_state(delta):
 		
 		if Input.is_action_just_pressed("attack"):
 			if has_sword == true:
-				Effects.reproducirEfect("SwordSlash",4)
-				Input.start_joy_vibration(0,0.05,0.06,0.06)
+				atack()
 				state = ATTACK
 		
 		if Input.is_action_just_pressed("boomerang"):
@@ -124,11 +124,21 @@ func move_state(delta):
 				$BoomerangThrowSound.play()
 				state = BOOMERANG
 
+func atack():
+	#animationState.travel("Attack")
+	animationState.start("Attack")
+	Effects.reproducirEfect("SwordSlash",4)
+	Input.start_joy_vibration(0,0.05,0.06,0.06)
+	is_atacking = true
+	camera.set_trauma(.1)
+	
+
 func atack_state(_delta):
 	velocity = Vector2.ZERO
-	
-	animationState.travel("Attack")
-	camera.set_trauma(.1)
+	if Input.is_action_just_pressed("attack"):
+			if has_sword == true and is_atacking == false:
+				atack()
+				state = ATTACK
 	pass
 
 func boomerang_state(_delta):
@@ -173,6 +183,9 @@ func move():
 func attack_anim_finished():
 	state = MOVE
 	animationState.travel("Idle")
+
+func coyote_atack():
+	is_atacking = false
 
 func boomerang_anim_finished():
 	#has_sword = false

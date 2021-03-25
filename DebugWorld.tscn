@@ -84,7 +84,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=62]
+[sub_resource type="TileSet" id=3]
 0/name = "DirtPath.png 0"
 0/texture = ExtResource( 11 )
 0/tex_offset = Vector2( 0, 0 )
@@ -724,7 +724,7 @@ format = 1
 tile_data = PoolIntArray( 1376236, 0, 0, 1376237, 0, 1, 1376238, 0, 2, 1441772, 0, 131072, 1441773, 0, 65542, 1441774, 0, 131077, 1441775, 0, 2, 1507309, 0, 131072, 1507310, 0, 131073, 1507311, 0, 9, 1507312, 0, 2, 1572847, 0, 131072, 1572848, 0, 196613, 1572849, 0, 196610, 1769468, 0, 3, 1835003, 0, 196608, 1835004, 0, 196615 )
 
 [node name="dirtPath" type="TileMap" parent="forest"]
-tile_set = SubResource( 62 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 24, 24 )
 cell_y_sort = true
 format = 1
