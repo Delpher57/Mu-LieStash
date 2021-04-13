@@ -53,6 +53,9 @@ var exclamation_played = false
 func _ready():
 	animationTree.active = true
 
+
+	
+
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 	knockback = move_and_slide(knockback)
@@ -83,7 +86,7 @@ func _physics_process(delta):
 				wandercontroler.start_wander_timer(rand_range(1,3))
 
 		CHASE:
-
+			
 			animationState.travel("RUN")
 			var player = playerdetectionzone.player
 			if player != null:

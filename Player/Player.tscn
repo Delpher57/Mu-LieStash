@@ -397,7 +397,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.463934, -0.675958 ) ]
+"values": [ Vector2( 0.11038, 2.50602 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprite:position")
@@ -1155,7 +1155,7 @@ graph_offset = Vector2( -330.495, 156.23 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=47]
 
 [sub_resource type="CapsuleShape2D" id=48]
-radius = 9.75307
+radius = 9.5437
 height = 12.8572
 
 [sub_resource type="Gradient" id=49]
@@ -1335,17 +1335,18 @@ parameters/Idle/blend_position = Vector2( 1, 0 )
 parameters/Run/blend_position = Vector2( 1, 0 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
-position = Vector2( 0.463934, -0.675958 )
+position = Vector2( 0.11038, 2.50602 )
 rotation = 4.71239
 
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 5 )]
 position = Vector2( 8.89947, -0.689395 )
+collision_layer = 32
 collision_mask = 1040
 script = ExtResource( 7 )
 damage = 2
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
-position = Vector2( 0.890945, 1.78189 )
+position = Vector2( -1.55903, 1.22508 )
 shape = SubResource( 48 )
 disabled = true
 

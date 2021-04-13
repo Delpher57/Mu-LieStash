@@ -1,0 +1,262 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Enemies/ShooterEnemyTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tests/mini_fantasy_sprites.png" type="Texture" id=2]
+[ext_resource path="res://Shadows/mini shadow.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/lasers/LaserAmarilloBasico.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 6.67563
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 6.32542
+height = 7.75773
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 5.75791
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 5.32987
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 105.511
+
+[sub_resource type="Animation" id=11]
+resource_name = "hurt"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 100, 100, 100, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3.93391e-06, 2.97638 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.21083, 0.813976 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "IDLE"
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 54, 55, 56, 57 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "RUN"
+length = 0.45
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "SHOOT1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 108, 109, 110, 111 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "atack_anim_ended"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "SHOOT2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 126, 127, 128, 129 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "atack_anim_ended"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "SHOOT3"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 165, 146, 147, 148, 149, 162, 163, 164, 165, 166 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "atack_anim_ended"
+} ]
+}
+
+[node name="Brujita" instance=ExtResource( 1 )]
+collision_mask = 129
+Laser = ExtResource( 4 )
+shoot_time_range_min = 2.0
+shoot_time_range_max = 4.0
+rango_vision_disparo = 300
+shoot_animations = 3
+knockback_speed = 80
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+vframes = 12
+hframes = 18
+frame = 166
+
+[node name="Sombra" parent="." index="1"]
+position = Vector2( 0, 12.9326 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0.19865, 9.46895 )
+shape = SubResource( 12 )
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -0.134514, 5.5726 )
+shape = SubResource( 7 )
+
+[node name="Hitbox" parent="." index="4"]
+visible = false
+position = Vector2( -0.28093, 0 )
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0.437572, 9.18555 )
+shape = SubResource( 8 )
+
+[node name="softColition" parent="." index="5"]
+visible = false
+position = Vector2( -0.28093, 0 )
+
+[node name="CollisionShape2D" parent="softColition" index="0"]
+position = Vector2( 0.468212, 9.27078 )
+shape = SubResource( 9 )
+
+[node name="PlayerDetectionZone" parent="." index="6"]
+visible = false
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource( 10 )
+
+[node name="Stats" parent="." index="8"]
+max_health = 8
+
+[node name="HurtAnim" parent="." index="11"]
+anims/hurt = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
+anims/IDLE = SubResource( 1 )
+anims/RUN = SubResource( 2 )
+anims/SHOOT1 = SubResource( 3 )
+anims/SHOOT2 = SubResource( 4 )
+anims/SHOOT3 = SubResource( 5 )
+
+[editable path="Hurtbox"]
+
+[editable path="Hitbox"]
+
+[editable path="softColition"]
+
+[editable path="PlayerDetectionZone"]

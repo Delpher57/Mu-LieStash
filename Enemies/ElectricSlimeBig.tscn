@@ -265,10 +265,9 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 57 )
-frame = 51
+frame = 29
 
 [node name="CollisionShape2D" parent="." index="2"]
-visible = false
 shape = SubResource( 58 )
 
 [node name="Hurtbox" parent="." index="3"]
@@ -292,7 +291,6 @@ shape = SubResource( 60 )
 position = Vector2( 0.0663643, 3.0819 )
 rotation = 1.5708
 shape = SubResource( 61 )
-disabled = true
 
 [node name="softColition" parent="." index="7"]
 position = Vector2( 0.298321, 0.696081 )

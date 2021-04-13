@@ -1,5 +1,6 @@
 [gd_scene load_steps=100 format=2]
 
+[ext_resource path="res://Enemies/Brujita.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/fondo2.png" type="Texture" id=3]
 [ext_resource path="res://World/dirtClif.png" type="Texture" id=4]
@@ -19,7 +20,6 @@
 [ext_resource path="res://Enemies/Bear1.tscn" type="PackedScene" id=18]
 [ext_resource path="res://SaveSystem/SavePoint/SavePoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://DialogSystem/Fonts/m6x11.ttf" type="DynamicFontData" id=20]
-[ext_resource path="res://tests/TestShooterEnemy.tscn" type="PackedScene" id=21]
 [ext_resource path="res://tests/DebugWorld.gd" type="Script" id=22]
 [ext_resource path="res://World/Pared_ladrillo_grisazulado.png" type="Texture" id=23]
 [ext_resource path="res://World/ladrillo_solo_azulgrsaseo.png" type="Texture" id=24]
@@ -808,6 +808,7 @@ spawn_position = Vector2( -989.935, -43.009 )
 
 [node name="Elefantin" parent="YSort/Players" instance=ExtResource( 14 )]
 position = Vector2( -1023.15, -20.005 )
+MAX_SPEED = 0
 
 [node name="Enemies" type="YSort" parent="YSort"]
 position = Vector2( -25.2191, 16.1989 )
@@ -815,21 +816,6 @@ position = Vector2( -25.2191, 16.1989 )
 [node name="GiantElectricSlime" parent="YSort/Enemies" instance=ExtResource( 7 )]
 position = Vector2( -143.413, 596.399 )
 XP_QUANTITY = 12
-
-[node name="ShooterEnemy3" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( -407.453, 694.95 )
-shoot_time_range_max = 5.0
-MAX_SPEED = 50
-
-[node name="ShooterEnemy4" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( -651.306, 633.038 )
-shoot_time_range_max = 5.0
-MAX_SPEED = 50
-
-[node name="ShooterEnemy6" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( -836.483, 421.877 )
-shoot_time_range_max = 5.0
-MAX_SPEED = 50
 
 [node name="ElectricSlimeBig4" parent="YSort/Enemies" instance=ExtResource( 6 )]
 position = Vector2( -682.399, 71.3036 )
@@ -861,18 +847,6 @@ position = Vector2( 259.761, 58.4644 )
 [node name="ElectricSlimeBig6" parent="YSort/Enemies" instance=ExtResource( 6 )]
 position = Vector2( 443.836, 30.7717 )
 
-[node name="ShooterEnemy" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( 369.455, 91.7224 )
-
-[node name="ShooterEnemy5" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( -234.015, 375.158 )
-
-[node name="ShooterEnemy7" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( 546.733, 107.072 )
-
-[node name="ShooterEnemy8" parent="YSort/Enemies" instance=ExtResource( 21 )]
-position = Vector2( -92.0839, 248.898 )
-
 [node name="BasicEnemy" parent="YSort/Enemies" instance=ExtResource( 36 )]
 position = Vector2( -858.391, 352.112 )
 
@@ -890,9 +864,6 @@ position = Vector2( -224.24, 712.991 )
 
 [node name="BasicEnemy4" parent="YSort/Enemies" instance=ExtResource( 36 )]
 position = Vector2( -619.827, 518.971 )
-
-[node name="Minotauro" parent="YSort/Enemies" instance=ExtResource( 39 )]
-position = Vector2( -423.062, 635.832 )
 
 [node name="Crock2" parent="YSort/Enemies" instance=ExtResource( 37 )]
 position = Vector2( -777.06, 521.911 )
@@ -915,8 +886,37 @@ position = Vector2( 636.426, 142.818 )
 [node name="Bear" parent="YSort/Enemies" instance=ExtResource( 18 )]
 position = Vector2( -1032.14, 53.603 )
 
+[node name="Minotauro4" parent="YSort/Enemies" instance=ExtResource( 39 )]
+position = Vector2( -135.284, 443.335 )
+
+[node name="Minotauro5" parent="YSort/Enemies" instance=ExtResource( 39 )]
+position = Vector2( -454.897, 631.425 )
+
+[node name="Brujita" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( -525.953, 151.663 )
+collision_layer = 1
+collision_mask = 1
+
 [node name="Crock" parent="YSort/Enemies" instance=ExtResource( 37 )]
 position = Vector2( -631.25, 249.419 )
+
+[node name="Brujita2" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( -794.597, 311.811 )
+
+[node name="Brujita3" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( -729.781, 625.801 )
+
+[node name="Brujita4" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( -278.781, 445.801 )
+
+[node name="Brujita5" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( -36.7809, 294.801 )
+
+[node name="Brujita6" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( 279.219, 174.801 )
+
+[node name="Brujita7" parent="YSort/Enemies" instance=ExtResource( 1 )]
+position = Vector2( 558.219, 76.8011 )
 
 [node name="NPCs" type="YSort" parent="YSort"]
 
@@ -1190,9 +1190,6 @@ motion_mirroring = Vector2( 900, 400 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
 texture = ExtResource( 38 )
-
-[node name="Minotauro" parent="." instance=ExtResource( 39 )]
-position = Vector2( -159.381, 459.534 )
 [connection signal="pressed" from="HealthUI/Button" to="HealthUI/Button" method="_on_Button_pressed"]
 
 [editable path="Camera2D"]

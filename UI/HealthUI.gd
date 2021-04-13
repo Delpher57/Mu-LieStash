@@ -117,7 +117,7 @@ func _on_AnimationPlayer_animation_finished(_anim_name):
 func set_heart_label_size():
 	if hearts > 9:
 		$NumSize.play("HPanimPlus10")
-		print("plus")
+
 	else:
 		$NumSize.play("HPanimBellow9")
-		print("below")
+
