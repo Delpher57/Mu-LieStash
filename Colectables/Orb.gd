@@ -24,6 +24,5 @@ func _on_Orb_body_entered(_body):
 
 
 func _on_AudioStreamPlayer2D_finished():
-	print(2222)
 	get_parent().queue_free()
 

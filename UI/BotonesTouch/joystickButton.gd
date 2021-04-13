@@ -2,7 +2,7 @@ extends TouchScreenButton
 
 var radius = Vector2(7,7)
 var boundary = 20
-var deadzone = 4
+var deadzone = 2
 
 var ongoing_drag = -1
 
@@ -24,7 +24,7 @@ func get_button_pos():
 
 func _input(event):
 	if event is InputEventJoypadMotion or event is InputEventKey:
-		ongoing_drag = 0
+		ongoing_drag = -2
 
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
 		
@@ -33,7 +33,7 @@ func _input(event):
 		if event_distance_from_center <= boundary * global_scale.x or event.get_index() == ongoing_drag:
 			global_position = event.position - radius * global_scale
 			if !PlayerStats.can_move:
-				test()
+				press_action_menu()
 				pass
 		
 			if get_button_pos().length() > boundary:
@@ -51,7 +51,7 @@ func send_action():
 	var strengh = get_button_pos().normalized()
 	
 	
-	if ongoing_drag == -1 and get_button_pos().length() <= deadzone:
+	if (ongoing_drag == -1 or get_button_pos().length() <= deadzone) and ongoing_drag != -2:
 		strengh = Vector2.ZERO
 		Input.action_press("ui_right",strengh.x)
 		Input.action_press("ui_down",strengh.y)
@@ -72,7 +72,7 @@ func get_action():
 		return ""
 
 
-func test2(ac):
+func release_action_menu(ac):
 
 	yield(get_tree().create_timer(.01), "timeout")
 
@@ -87,7 +87,7 @@ func test2(ac):
 	using = false
 
 var using = false
-func test():
+func press_action_menu():
 	if !using:
 		using = true
 		var evt = InputEventAction.new()
@@ -99,7 +99,7 @@ func test():
 		
 		get_tree().input_event(evt)
 		Input.parse_input_event(evt)
-		test2(action_str)
+		release_action_menu(action_str)
 
 
 

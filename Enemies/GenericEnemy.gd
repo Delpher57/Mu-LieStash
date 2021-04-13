@@ -53,7 +53,7 @@ func _physics_process(delta):
 			seek_player()
 			if wandercontroler.get_time_left() == 0:
 				state = pick_random_state([IDLE,WANDER])
-				wandercontroler.start_wander_timer(rand_range(1,3))
+				wandercontroler.start_wander_timer(rand_range(2,4))
 			accelerate_towards_point(wandercontroler.target_position,delta)
 
 			
@@ -83,9 +83,9 @@ func _physics_process(delta):
 					exclamationAnim.play("exclamation")
 					exclamation_played = true
 				change_fight_behavior()
-				accelerate_against_point(player.global_position,delta)
-				if velocity.x == 0 or velocity.y == 0:
+				if abs(velocity.x) <= .1 and abs(velocity.y) <= .1: 
 					state = CHASE
+				accelerate_against_point(player.global_position,delta)
 			else:
 				state = IDLE
 				exclamation_played = false
@@ -110,7 +110,7 @@ func accelerate_against_point(pos,delta):
 
 func seek_player():
 	if playerdetectionzone.can_see_player():
-		state = CHASE
+		state = pick_random_state([CHASE,AVOID])
 
 
 func create_death_effect():

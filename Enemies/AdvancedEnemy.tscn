@@ -1,0 +1,275 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://Hurtboxes + HitBoxes/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Hurtboxes + HitBoxes/Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Hurtboxes + HitBoxes/softColition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/PlayerDetectionZone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/wanderControler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://General/Stats.tscn" type="PackedScene" id=6]
+[ext_resource path="res://tests/advancedEnemy.gd" type="Script" id=7]
+[ext_resource path="res://Music and Sounds/Effects/Hurt.wav" type="AudioStream" id=8]
+[ext_resource path="res://Music and Sounds/Effects/EnemyAttack.wav" type="AudioStream" id=9]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "ATTACKR"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "ATTACKL"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "ATTACKR"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "ATTACKL"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=5]
+blend_point_0/node = SubResource( 1 )
+blend_point_0/pos = Vector2( 0, 1.1 )
+blend_point_1/node = SubResource( 2 )
+blend_point_1/pos = Vector2( 0, -1.1 )
+blend_point_2/node = SubResource( 3 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 4 )
+blend_point_3/pos = Vector2( -1, 0 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "ATTACKR2"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "ATTACKL2 "
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "ATTACKR2"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "ATTACKL2 "
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=10]
+blend_point_0/node = SubResource( 6 )
+blend_point_0/pos = Vector2( 0, 1.1 )
+blend_point_1/node = SubResource( 7 )
+blend_point_1/pos = Vector2( 0, -1.1 )
+blend_point_2/node = SubResource( 8 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 9 )
+blend_point_3/pos = Vector2( -1, 0 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=15]
+blend_point_0/node = SubResource( 11 )
+blend_point_0/pos = Vector2( 1, 0 )
+blend_point_1/node = SubResource( 12 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 13 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 14 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "RUN"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "RUN"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "RUN"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "RUN"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=20]
+blend_point_0/node = SubResource( 16 )
+blend_point_0/pos = Vector2( 1, 0 )
+blend_point_1/node = SubResource( 17 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 18 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 19 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachine" id=27]
+states/ATTACK1/node = SubResource( 5 )
+states/ATTACK1/position = Vector2( 433, 38 )
+states/ATTACK2/node = SubResource( 10 )
+states/ATTACK2/position = Vector2( 433, 247 )
+states/IDLE/node = SubResource( 15 )
+states/IDLE/position = Vector2( 428, 137 )
+states/RUN/node = SubResource( 20 )
+states/RUN/position = Vector2( 279, 137 )
+transitions = [ "RUN", "IDLE", SubResource( 21 ), "IDLE", "RUN", SubResource( 22 ), "ATTACK2", "IDLE", SubResource( 23 ), "IDLE", "ATTACK2", SubResource( 24 ), "IDLE", "ATTACK1", SubResource( 25 ), "ATTACK1", "IDLE", SubResource( 26 ) ]
+start_node = "IDLE"
+graph_offset = Vector2( -10.75, 120.675 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+
+[sub_resource type="Animation" id=29]
+resource_name = "hurt"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 6.27669, 0.500001, 0.297302 ),
+"update": 0,
+"values": [ Color( 100, 100, 100, 1 ), Color( 100, 100, 100, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4.98092 ), Vector2( 0.479997, 1.46775 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.688693 ), Vector2( 0.880082, 0.931852 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[node name="AdvancedEnemy" type="KinematicBody2D"]
+collision_layer = 256
+collision_mask = 385
+script = ExtResource( 7 )
+FRICTION = 400
+MAX_SPEED = 75
+XP_QUANTITY = 5
+knockback_friction = 200
+knockback_speed = 120
+atacks = [ "ATTACK1", "ATTACK2" ]
+
+[node name="sombra" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+
+[node name="sprite" type="Sprite" parent="."]
+vframes = 3
+hframes = 6
+frame = 13
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 27 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 28 )
+parameters/ATTACK1/blend_position = Vector2( 0, 0 )
+parameters/ATTACK2/blend_position = Vector2( 0, 0 )
+parameters/IDLE/blend_position = Vector2( 0, 0 )
+parameters/RUN/blend_position = Vector2( 0, 0 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+collision_layer = 64
+collision_mask = 12
+damage = 2
+
+[node name="Hitbox2" parent="." instance=ExtResource( 1 )]
+collision_layer = 64
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+collision_layer = 16
+
+[node name="softColition" parent="." instance=ExtResource( 3 )]
+
+[node name="Stats" parent="." instance=ExtResource( 6 )]
+max_health = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="wanderControler" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 0, -0.174656 )
+wanderRange = 30
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 4 )]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="hurt_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="hit_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = 10.0
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 1.63125, -1.32538 )
+scale = Vector2( 1.61172, 2.05011 )
+process_parent = true
+physics_process_parent = true
+
+[node name="hurtAnim" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 29 )
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]
+
+[editable path="Hitbox2"]
+
+[editable path="Hurtbox"]
+
+[editable path="softColition"]
+
+[editable path="PlayerDetectionZone"]

@@ -51,6 +51,7 @@ func _physics_process(delta):
 	
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
 	knockback = move_and_slide(knockback)
+	#print("Velocity: (",abs(velocity.x)," , ",abs(velocity.y), ") state: ", state )
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -83,7 +84,8 @@ func _physics_process(delta):
 				accelerate_towards_point(player.global_position,delta)
 				
 				if global_position.distance_to(player.global_position) < rango_vision/3:
-					state = pick_random_state([CHASE,AVOID])
+					change_fight_behavior(AVOID)
+
 				
 				if global_position.distance_to(player.global_position) < rango_vision:
 					if can_shoot == true:
@@ -101,6 +103,9 @@ func _physics_process(delta):
 				accelerate_against_point(player.global_position,delta)
 				
 				if global_position.distance_to(player.global_position) > rango_vision/2:
+					state = CHASE
+				
+				if abs(velocity.x) < .5 or abs(velocity.y) < .5: 
 					state = CHASE
 				
 				if global_position.distance_to(player.global_position) < rango_vision:
@@ -146,7 +151,7 @@ func shoot(player):
 	get_parent().add_child(laser)
 	laser.global_position = global_position
 	laser.direction = global_position.direction_to(player.global_position).normalized()
-	state = IDLE
+	state = CHASE
 
 
 func create_death_effect():
@@ -172,6 +177,7 @@ func _on_Hurtbox_area_entered(area):
 	knockback = area.knockback_vector * knockback_speed * area.knockback_multiplier
 	hurtbox.start_invincibility(0.45)
 	hurtbox.create_hit_effect()
+	state = AVOID
 
 
 func _on_Stats_no_health():
@@ -193,8 +199,9 @@ func _on_ShootTimer_timeout():
 
 
 #cambiamos entre rer o atacar en una batalla
-func change_fight_behavior():
-
+func change_fight_behavior(new_state):
+	
 	if $AttackorRunTimer.get_time_left() == 0:
-		state = pick_random_state([CHASE,AVOID])
-		$AttackorRunTimer.start(rand_range(3,7))
+		print("cambiando de estado")
+		state = new_state
+		$AttackorRunTimer.start(rand_range(0.1,0.5))

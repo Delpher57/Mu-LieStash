@@ -246,8 +246,9 @@ height = 9.33324
 [sub_resource type="CircleShape2D" id=60]
 radius = 73.6971
 
-[sub_resource type="CircleShape2D" id=61]
-radius = 7.97643
+[sub_resource type="CapsuleShape2D" id=61]
+radius = 7.788
+height = 7.33099
 
 [sub_resource type="CapsuleShape2D" id=62]
 radius = 4.10668
@@ -264,7 +265,7 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 57 )
-frame = 9
+frame = 51
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -288,8 +289,10 @@ position = Vector2( -0.298321, 2.18769 )
 shape = SubResource( 60 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( -0.033081, 3.5791 )
+position = Vector2( 0.0663643, 3.0819 )
+rotation = 1.5708
 shape = SubResource( 61 )
+disabled = true
 
 [node name="softColition" parent="." index="7"]
 position = Vector2( 0.298321, 0.696081 )

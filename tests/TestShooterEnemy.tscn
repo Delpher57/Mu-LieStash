@@ -29,11 +29,11 @@ radius = 3.88785
 radius = 6.38425
 
 [node name="ShooterEnemy" instance=ExtResource( 2 )]
-shoot_time_range_min = 3.0
-shoot_time_range_max = 8.0
+shoot_time_range_min = 2.0
+shoot_time_range_max = 4.0
 ACCELERATION = 500
 knockback_friction = 500
-knockback_speed = 102
+knockback_speed = 109
 shakeamount = 0.25
 
 [node name="sombra" parent="." index="0"]
@@ -88,7 +88,7 @@ shape = SubResource( 6 )
 visible = false
 
 [node name="ShootTimer" parent="." index="16"]
-wait_time = 7.0
+wait_time = 3.0
 
 [editable path="Hurtbox"]
 

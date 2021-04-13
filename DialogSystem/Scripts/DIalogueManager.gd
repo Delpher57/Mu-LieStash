@@ -51,6 +51,11 @@ onready var sprite = $Sprite
 onready var talkSound = $talksound
 
 
+func _ready():
+	dialoguePanel.show()
+	dialoguePanel.hide()
+
+
 func iniciar_dialogo(archivo):
 # warning-ignore:return_value_discarded
 	dialogueButtons[0].grab_focus()

@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Enemies/GenericEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shadows/mini-mini shadow.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/enemis2.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 288, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 320, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 352, 96, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 4.66855
+height = 8.93953
+
+[sub_resource type="CircleShape2D" id=7]
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 130.832
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 8.48325
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 6.94295
+
+[node name="MoscaBasica" instance=ExtResource( 1 )]
+FRICTION = 2
+MAX_SPEED = 75
+wanderDistance = 10
+knockback_friction = 480
+knockback_speed = 100
+
+[node name="sombra" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0.235294 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="1"]
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+position = Vector2( 0.174824, 5.42194 )
+shape = SubResource( 6 )
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0.217422, -0.0287483 )
+shape = SubResource( 7 )
+
+[node name="PlayerDetectionZone" parent="." index="5"]
+visible = false
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource( 8 )
+
+[node name="Hitbox" parent="." index="6"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0.239971, 0.0699379 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D" parent="softColition" index="0"]
+position = Vector2( 0.157913, 0.131212 )
+shape = SubResource( 10 )
+
+[node name="VisibilityEnabler2D" parent="." index="9"]
+visible = false
+
+[editable path="Hurtbox"]
+
+[editable path="PlayerDetectionZone"]
+
+[editable path="Hitbox"]
+
+[editable path="softColition"]

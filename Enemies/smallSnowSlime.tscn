@@ -88,7 +88,7 @@ texture = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 13 )
-frame = 6
+frame = 11
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
