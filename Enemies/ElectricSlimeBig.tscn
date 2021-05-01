@@ -255,7 +255,7 @@ radius = 4.10668
 height = 14.2592
 
 [node name="ElectricSlimeBig" instance=ExtResource( 3 )]
-MAX_SPEED = 30
+MAX_SPEED = 35
 knockback_speed = 115
 shakeamount = 0.25
 
@@ -265,7 +265,7 @@ texture = ExtResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 57 )
-frame = 29
+frame = 13
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 58 )

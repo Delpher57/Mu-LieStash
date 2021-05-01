@@ -22,12 +22,19 @@ func _process(delta):
 func get_button_pos():
 	return position + radius
 
+#ocultamos o mostramos la UI dependiendo de los controles
+func _unhandled_input(event):
+	if event is InputEventJoypadMotion or event is InputEventKey:
+		hide_all()
+	if event is InputEventScreenDrag or event is InputEventScreenTouch:
+		show_all()
+
 func _input(event):
 	if event is InputEventJoypadMotion or event is InputEventKey:
 		ongoing_drag = -2
-
+	
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
-		
+		show_all()
 		var event_distance_from_center = (event.position - get_parent().global_position).length()
 		
 		if event_distance_from_center <= boundary * global_scale.x or event.get_index() == ongoing_drag:
@@ -101,6 +108,11 @@ func press_action_menu():
 		Input.parse_input_event(evt)
 		release_action_menu(action_str)
 
+func hide_all():
+	if get_parent().get_parent().is_visible_in_tree() == true:
+		get_parent().get_parent().hide()
 
-
+func show_all():
+	if get_parent().get_parent().is_visible_in_tree() == false:
+		get_parent().get_parent().show()
 

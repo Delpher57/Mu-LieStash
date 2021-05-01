@@ -23,7 +23,6 @@ tracks/0/keys = {
 [node name="Camera2D" type="Camera2D" groups=[
 "Camera",
 ]]
-position = Vector2( 68.8639, 103.113 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 3.0
@@ -40,8 +39,8 @@ position = Vector2( 233.976, 199.934 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 100, 0, 0, 0 )
-position = Vector2( 3.73284, 0.27018 )
-scale = Vector2( 1.93304, 1.27393 )
+position = Vector2( 55.9803, 49.3383 )
+scale = Vector2( 1.11927, 2.17181 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 784.504, 270.008 )

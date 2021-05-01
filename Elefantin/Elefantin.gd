@@ -43,20 +43,20 @@ func _physics_process(delta):
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-			seek_player()
+			seek_enemy()
 		
 		FOLLOW:
 			if velocity == Vector2.ZERO:
 				animationState.travel("IDLE")
 			else:
 				animationState.travel("RUN")
-			seek_player()
+			seek_enemy()
 			#nos teletransportamos si muy lejos
 			if global_position.distance_to(jugador.global_position) > 150:
 				global_position = jugador.global_position
 			else:
 				#nos detenemos al estar muy cerca
-				if global_position.distance_to(jugador.global_position) < 30:
+				if global_position.distance_to(jugador.global_position) < 35:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 					
 				else:
@@ -67,7 +67,6 @@ func _physics_process(delta):
 			if enemy != null:
 				accelerate_towards_point(enemy.global_position,delta)
 				if global_position.distance_to(enemy.global_position) < 40:
-					
 					animationState.travel("ATTACK")
 			else:
 				state = FOLLOW
@@ -86,7 +85,7 @@ func accelerate_towards_point(pos,delta):
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	
 
-func seek_player():
+func seek_enemy():
 	if enemyDetector.can_see_enemy():
 		state = ATACK
 

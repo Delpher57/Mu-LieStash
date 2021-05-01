@@ -31,7 +31,7 @@ var nodes # containes all the nodes of the current dialogue
 
 var sound_on = false
 signal finprint
-var reveal_speed = 25
+var reveal_speed = 0.025
 
 #----DATA (from file)-----#
 var curent_node_id # handles the current node we are traversing Note: -1 exits the dialogue
@@ -170,7 +170,7 @@ func prueba(text):
 	dialogueText.bbcode_text = text
 
 	#hacemos que la velocidad sea independiente del tamaño del texto
-	var time = dialogueText.bbcode_text.length() / reveal_speed
+	var time = dialogueText.bbcode_text.length() * reveal_speed
 	talkSound.play()
 	$Tween.interpolate_property(dialogueText, "percent_visible", 0, 1, \
 		time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -192,7 +192,7 @@ var counter_stepper = 5
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func _on_Tween_tween_step(object, key, elapsed, value):
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("boomerang"):
 		dialogueText.percent_visible = 1
 		emit_signal("finprint")
 		$Tween.stop_all()

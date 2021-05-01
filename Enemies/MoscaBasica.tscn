@@ -69,6 +69,9 @@ visible = false
 position = Vector2( 0.217422, -0.0287483 )
 shape = SubResource( 7 )
 
+[node name="Stats" parent="." index="4"]
+max_health = 3
+
 [node name="PlayerDetectionZone" parent="." index="5"]
 visible = false
 

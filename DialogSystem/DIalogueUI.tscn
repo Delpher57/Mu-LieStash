@@ -4,6 +4,7 @@
 [ext_resource path="res://DialogSystem/DIalogueUIroot.gd" type="Script" id=4]
 
 [node name="DialogueUI" type="CanvasLayer"]
+layer = 2
 script = ExtResource( 4 )
 
 [node name="DialogueUI" parent="." instance=ExtResource( 1 )]

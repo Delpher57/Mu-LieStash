@@ -7,5 +7,6 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueUI" parent="." instance=ExtResource( 1 )]
+layer = 4
 
 [editable path="DialogueUI"]
