@@ -23,6 +23,7 @@ func _on_Orb_body_entered(_body):
 	$AudioStreamPlayer2D.play()
 
 
+signal kill
 func _on_AudioStreamPlayer2D_finished():
-	get_parent().queue_free()
+	emit_signal("kill")
 

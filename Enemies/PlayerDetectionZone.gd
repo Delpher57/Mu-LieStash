@@ -1,5 +1,6 @@
 extends Area2D
 
+export var stop_following = true
 
 var player = null
 
@@ -11,4 +12,5 @@ func _on_PlayerDetectionZone_body_entered(body):
 
 
 func _on_PlayerDetectionZone_body_exited(_body):
-	player = null
+	if stop_following:
+		player = null

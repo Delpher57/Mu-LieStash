@@ -132,7 +132,6 @@ func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
 	audio.play()
 	hurtanim.play("Hurt")
-	exclamationAnim.play("hideExclamation")
 	knockback = area.knockback_vector * knockback_speed * area.knockback_multiplier
 	hurtbox.start_invincibility(0.3)
 	hurtbox.create_hit_effect()

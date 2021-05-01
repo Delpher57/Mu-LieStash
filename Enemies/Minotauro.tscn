@@ -338,7 +338,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 11.0216
+radius = 7.67476
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 9.06929
@@ -351,7 +351,7 @@ height = 12.3654
 extents = Vector2( 6.33506, 5.75133 )
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 11.0312, 4.83371 )
+extents = Vector2( 9.10511, 4.83371 )
 
 [sub_resource type="CircleShape2D" id=13]
 radius = 157.361
@@ -371,9 +371,9 @@ texture = ExtResource( 1 )
 
 [node name="sprite" parent="." index="1"]
 texture = ExtResource( 3 )
-vframes = 20
 hframes = 9
-frame = 14
+vframes = 20
+frame = 0
 
 [node name="AnimationTree" parent="." index="2"]
 parameters/playback = SubResource( 1 )
@@ -387,8 +387,11 @@ anims/ATTACKR2 = SubResource( 5 )
 anims/IDLE = SubResource( 6 )
 anims/RUN = SubResource( 7 )
 
+[node name="Hitbox" parent="." index="4"]
+visible = false
+
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 16.7044, 14.0317 )
+position = Vector2( 16.0362, 15.5907 )
 shape = SubResource( 8 )
 disabled = true
 
@@ -407,12 +410,11 @@ position = Vector2( -2.36236, -0.787453 )
 shape = SubResource( 10 )
 
 [node name="CollisionShape2D" parent="softColition" index="0"]
-position = Vector2( -2.30548, 6.24836 )
+position = Vector2( -0.417731, 6.24836 )
 shape = SubResource( 11 )
 
 [node name="CollisionShape2D" parent="." index="9"]
-visible = false
-position = Vector2( -2.53889, 13.0823 )
+position = Vector2( -0.179202, 13.0823 )
 shape = SubResource( 12 )
 
 [node name="PlayerDetectionZone" parent="." index="11"]
@@ -425,11 +427,7 @@ shape = SubResource( 13 )
 visible = false
 
 [editable path="Hitbox"]
-
 [editable path="Hitbox2"]
-
 [editable path="Hurtbox"]
-
 [editable path="softColition"]
-
 [editable path="PlayerDetectionZone"]

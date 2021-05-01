@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tipa16.mp3-2920ac52d242b51e6bd3394dc9c44160.mp3str"
+
+[deps]
+
+source_file="res://Music and Sounds/Music/tipa16.mp3"
+dest_files=[ "res://.import/tipa16.mp3-2920ac52d242b51e6bd3394dc9c44160.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

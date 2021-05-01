@@ -43,7 +43,6 @@ onready var dashanim = $DashAnimation
 onready var camera = get_tree().get_nodes_in_group("Camera")[0]
 
 export var invincibility_time = 0.5
-export var spawn_position = Vector2.ZERO
 var Boomerang = preload ("res://Player/Boomerang.tscn")
 
 func _ready():
@@ -56,6 +55,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("debug"):
+		_on_Hurtbox_area_entered(bullet_damage)
 	match state:
 		MOVE:
 			move_state(delta)
@@ -202,8 +203,11 @@ func _on_particle_timer_timeout():
 	$dash_particles/trail2.emitting = false
 
 
+
+var bullet_damage = {"damage":1, "knockback_vectorH":Vector2.ZERO}
 func _on_Hurtbox_area_entered(area):
-	if is_talking == false:
+
+	if is_talking == false and hurtbox.invincible == false:
 		Effects.reproducirEfect("Hurt",6)
 		Input.start_joy_vibration(0,0.9,1,0.2)
 		

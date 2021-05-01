@@ -369,4 +369,5 @@ __meta__ = {
 
 [node name="LevelUPSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -109,7 +109,7 @@ func accelerate_towards_point(pos,delta):
 	animationTree.set("parameters/ATTACK2/blend_position",global_position.direction_to(pos).normalized())
 	animationTree.set("parameters/IDLE/blend_position",global_position.direction_to(pos).normalized())
 	animationTree.set("parameters/RUN/blend_position",global_position.direction_to(pos).normalized())
-	sprite.flip_h = velocity.x < 0
+	sprite.flip_h = velocity.x <= 0
 	var direction =global_position.direction_to(pos)
 	hitbox.knockback_vectorH = direction
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)

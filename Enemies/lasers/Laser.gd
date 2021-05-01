@@ -7,12 +7,17 @@ var velocity = Vector2.ZERO
 export var MAX_SPEED = 80
 var ACCELERATION = 10000000
 var FRICTION = 100
+export var angle = 0.0
+var angle_change = 0.0 #angulo que va a ir aumentando cada frame
+var lifetime = 999.0
 
-
+func _ready():
+	$lifetime.start(lifetime)
 
 func _process(_delta):
-	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION)
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION).rotated(deg2rad(angle))
 	velocity = move_and_slide(velocity)
+	angle += angle_change
 
 
 
@@ -21,9 +26,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$AnimationPlayer.play("Pulse")
 
 
-func _on_VisibilityEnabler2D_viewport_exited(_viewport):
-	pass
-	
 
 
 # warning-ignore:unused_argument
@@ -43,3 +45,7 @@ func _on_Hitbox_body_entered(body):
 func stop_movement():
 	velocity = Vector2.ZERO
 	MAX_SPEED = 0
+
+
+func _on_lifetime_timeout():
+	$AnimationPlayer.play("DIE")
